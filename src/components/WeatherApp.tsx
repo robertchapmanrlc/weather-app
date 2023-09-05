@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Weather from "./Weather";
+import { Button, Stack } from "@mui/material";
+import { HourglassBottom } from "@mui/icons-material";
 
 const api = {
   key: "",
@@ -18,6 +20,10 @@ function WeatherApp() {
   const [long, setLong] = useState(0);
   const [data, setData] = useState(weatherDataObj);
 
+  const refresh = () => {
+    window.location.reload();
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -32,8 +38,6 @@ function WeatherApp() {
       )
         .then((res) => res.json())
         .then((result) => {
-          console.log(result);
-          console.log(typeof result.sys);
           setData(result);
         })
         .catch((err) => console.log(err.message));
@@ -42,7 +46,22 @@ function WeatherApp() {
   }, [lat, long]);
 
   return (
-    <>{typeof data != "undefined" ? <Weather weatherData={data} /> : <></>}</>
+    <>
+      <Stack spacing={2}>
+        <Button variant="contained" onClick={refresh}>
+          Refresh
+        </Button>
+        {data.name != "Globe" && data.name != weatherDataObj.name ? (
+          <>
+            <Weather weatherData={data} />
+          </>
+        ) : (
+          <>
+            <HourglassBottom></HourglassBottom>
+          </>
+        )}
+      </Stack>
+    </>
   );
 }
 
