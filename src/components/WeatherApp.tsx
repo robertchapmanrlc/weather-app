@@ -26,24 +26,26 @@ function WeatherApp() {
 
   useEffect(() => {
     const fetchData = async () => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-      });
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
 
-      console.log(lat, long);
+        console.log(latitude, longitude);
 
-      await fetch(
-        `${api.base}/weather?lat=${lat}&lon=${long}&units=metric&APPID=${api.key}`
-      )
-        .then((res) => res.json())
-        .then((result) => {
+        try {
+          const response = await fetch(
+            `${api.base}/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=${api.key}`
+          );
+          if (!response.ok) throw new Error("fetch response not ok");
+          const result = await response.json();
           setData(result);
-        })
-        .catch((err) => console.log(err.message));
+        } catch (error) {
+          console.log(error);
+        }
+      });
     };
     fetchData();
-  }, [lat, long]);
+  }, []);
 
   return (
     <>
