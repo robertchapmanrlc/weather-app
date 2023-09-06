@@ -11,8 +11,13 @@ const api = {
 const weatherDataObj = {
   name: "",
   sys: { sunrise: 0, sunset: 0 },
-  main: { temp: 0, humidity: 0 },
+  main: { temp: 0, humidity: 0, temp_max: 0, temp_min: 0 },
   weather: [{ description: "" }],
+  wind: {
+    speed: 0
+  },
+  rain: {},
+  snow: {}
 };
 
 function WeatherApp() {
@@ -39,8 +44,6 @@ function WeatherApp() {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-
-        console.log(latitude, longitude);
 
         try {
           const response = await fetch(
