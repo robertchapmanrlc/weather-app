@@ -25,7 +25,7 @@ function Weather({ weatherData }: Props) {
         <CardContent>
           <CardHeader className="header" title={weatherData.name} />
           <Typography variant="body1">
-            Temperature: {weatherData.main.temp} &deg;C
+            Temperature: {weatherData.main.temp} &deg;F
           </Typography>
           <Typography variant="body1">
             Sunrise: {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString(

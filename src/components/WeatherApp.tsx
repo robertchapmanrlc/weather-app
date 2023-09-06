@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Weather from "./Weather";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
 import { HourglassBottom } from "@mui/icons-material";
 
 const api = {
@@ -16,13 +16,23 @@ const weatherDataObj = {
 };
 
 function WeatherApp() {
-  const [lat, setLat] = useState(0);
-  const [long, setLong] = useState(0);
+  const [location, setLocation] = useState("");
   const [data, setData] = useState(weatherDataObj);
 
   const refresh = () => {
     window.location.reload();
   };
+
+  const getLocationWeather = async () => {
+    try {
+      const response = await fetch(`${api.base}/weather?q=${location}&units=imperial&APPID=${api.key}`);
+      if (!response.ok) throw new Error('fetch response not ok');
+      const result = await response.json();
+      setData(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +44,7 @@ function WeatherApp() {
 
         try {
           const response = await fetch(
-            `${api.base}/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=${api.key}`
+            `${api.base}/weather?lat=${latitude}&lon=${longitude}&units=imperial&APPID=${api.key}`
           );
           if (!response.ok) throw new Error("fetch response not ok");
           const result = await response.json();
@@ -53,6 +63,17 @@ function WeatherApp() {
         <Button variant="contained" onClick={refresh}>
           Refresh
         </Button>
+        <TextField
+          label="Enter City"
+          variant="outlined"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              getLocationWeather();
+            }
+          }}
+        />
         {data.name != "Globe" && data.name != weatherDataObj.name ? (
           <>
             <Weather weatherData={data} />
