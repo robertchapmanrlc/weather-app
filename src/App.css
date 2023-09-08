@@ -3,33 +3,12 @@
   src: url('/src/fonts/Overpass-Regular.ttf');
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #root {
-  max-width: 100vw;
-  margin: 0 auto;
   text-align: center;
   font-family: Overpass, 'sans-serif';
-}
-
-.card-sunrise {
-  background-image: linear-gradient(145deg, rgb(84, 90, 158), #FF5800);
-}
-
-.card-morning {
-  background-image: linear-gradient(145deg, #FF5800, #ffae42, rgb(240, 240, 0));
-}
-
-.card-daytime {
-  background-image: linear-gradient(145deg, rgb(238, 238, 0), skyblue);
-}
-
-.card-sunset {
-  background-image: linear-gradient(145deg, skyblue, #FF5800);
-}
-
-.card-evening {
-  background-image: linear-gradient(145deg, #FF5800, #A020F0);
-}
-
-.card-night {
-  background-image: linear-gradient(145deg, #A020F0, blue, #1520A6);
 }

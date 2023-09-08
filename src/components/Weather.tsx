@@ -28,7 +28,39 @@ interface Props {
 function Weather({ weatherData }: Props) {
   return (
     <>
-      <Card className="card-daytime" sx={{color: 'white', minWidth: 500, minHeight: 500}}>
+      <Typography variant="h2" sx={{ color: "white" }}>
+        {weatherData.name}
+      </Typography>
+      <Typography variant="h3" sx={{ color: "white" }}>
+        {weatherData.main.temp}&deg;F
+      </Typography>
+      <Typography variant="h5" sx={{ color: "white" }}>
+        {weatherData.weather[0].description}
+      </Typography>
+      <Typography variant="h5" sx={{ color: "white" }}>
+        {weatherData.main.temp_max}&deg;F / {weatherData.main.temp_min}&deg;F
+      </Typography>
+      <Typography variant="h4" sx={{ color: "white" }}>
+        {weatherData.main.humidity}%
+      </Typography>
+      <Typography variant="h4" sx={{ color: "white" }}>
+        {weatherData.wind.speed} mph
+      </Typography>
+      <Typography variant="h4" sx={{ color: "white" }}>
+        {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        })}
+      </Typography>
+      <Typography variant="h4" sx={{ color: "white" }}>
+        {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        })}
+      </Typography>
+      {/* <Card sx={{minWidth: 500, minHeight: 500}}>
         <CardContent>
           <CardHeader
             className="header"
@@ -81,7 +113,7 @@ function Weather({ weatherData }: Props) {
             Date: {moment().format("LL")}
           </Typography>
         </CardContent>
-      </Card>
+      </Card> */}
     </>
   );
 }
