@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import "./index.css";
 
 const backgrounds = {
   sunrise: "background-image: linear-gradient(145deg, rgb(84, 90, 158), #FF5800); height: 100vh; width: 100vw;",
