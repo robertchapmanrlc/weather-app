@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Weather from "./Weather";
-import { Button, Stack, TextField} from "@mui/material";
+import { Stack, TextField} from "@mui/material";
 import { HourglassBottom } from "@mui/icons-material";
+import SearchBar from "./SearchBar";
+
 
 const api = {
   key: "",
@@ -36,14 +38,14 @@ const weatherDataObj = {
 };
 
 function WeatherApp() {
-  const [location, setLocation] = useState("");
+  // const [location, setLocation] = useState("");
   const [data, setData] = useState(weatherDataObj);
 
   const refresh = () => {
     window.location.reload();
   };
 
-  const getLocationWeather = async () => {
+  const getLocationWeather = async (location: string) => {
     try {
       const response = await fetch(
         `${api.base}/weather?q=${location}&units=imperial&APPID=${api.key}`
@@ -102,30 +104,10 @@ function WeatherApp() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = (e: Event) => {
-    e.preventDefault();
-
-
-  }
-
   return (
     <>
-      <Stack spacing={2}>
-        <Button variant="contained" onClick={refresh}>
-          Refresh
-        </Button>
-        <TextField
-          label="Enter City"
-          variant="outlined"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              getLocationWeather();
-            }
-          }}
-        />
-
+      <SearchBar getWeatherData={getLocationWeather}/>
+      <Stack spacing={2} alignItems="center" mt={5}>
         {data.name != "Globe" && data.name != weatherDataObj.name ? (
           <>
             <Weather weatherData={data} />
