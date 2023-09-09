@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import moment from "moment";
 import MainWeather from "./MainWeather";
+import Humidity from "./Humidity";
 
 interface Props {
   weatherData: {
@@ -37,9 +38,7 @@ function Weather({ weatherData }: Props) {
         min_temp={Math.round(weatherData.main.temp_min)}
         description={weatherData.weather[0].description}
       />
-      <Typography variant="h4" sx={{ color: "white" }}>
-        {weatherData.main.humidity}%
-      </Typography>
+      <Humidity humidity={weatherData.main.humidity} />
       <Typography variant="h4" sx={{ color: "white" }}>
         {weatherData.wind.speed} mph
       </Typography>

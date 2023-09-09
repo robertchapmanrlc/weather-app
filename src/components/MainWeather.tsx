@@ -1,4 +1,11 @@
-import { Typography, Card, CardContent, Box, Stack, Container } from "@mui/material";
+import {
+  Typography,
+  Card,
+  CardContent,
+  Box,
+  Stack,
+  Container,
+} from "@mui/material";
 import Sunny from "./Sunny";
 
 interface Props {
@@ -22,15 +29,28 @@ function MainWeather({
     <>
       <Card
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.15)"
+          backgroundColor: "rgba(255, 255, 255, 0.25)",
         }}
       >
         <CardContent>
           <Stack direction="row" spacing={5}>
-            <Container sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: '250px'}}>
+            <Container
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minWidth: "250px",
+              }}
+            >
               <Sunny />
             </Container>
-            <Box minWidth="450px" display="flex" flexDirection="column" justifyContent="center" alignItems="start">
+            <Box
+              minWidth="450px"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="start"
+            >
               <Typography variant="h5" sx={{ color: "white" }}>
                 {date}
               </Typography>
