@@ -41,7 +41,7 @@ function Weather({ weatherData }: Props) {
           min_temp={Math.round(weatherData.main.temp_min)}
           description={weatherData.weather[0].description}
         />
-        <Stack direction="row" spacing={10} sx={{ display: 'flex', alignItems: 'center'}}>
+        <Stack direction="row" spacing={5} sx={{ display: 'flex', alignItems: 'center'}}>
           <Humidity humidity={weatherData.main.humidity} />
           <WindSpeed wind_speed={Math.round(weatherData.wind.speed)} />
           <SunRiseSunSet

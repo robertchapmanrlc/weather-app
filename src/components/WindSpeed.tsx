@@ -12,6 +12,8 @@ function WindSpeed({ wind_speed }: Props) {
       style={{
         backgroundColor: "rgba(255, 255, 255, 0.15)",
         color: "white",
+        height: 180,
+        width: 247
       }}
     >
       <CardContent>
