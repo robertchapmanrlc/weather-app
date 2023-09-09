@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import Weather from "./Weather";
-import { Stack} from "@mui/material";
+import { Stack } from "@mui/material";
 import { HourglassBottom } from "@mui/icons-material";
 import SearchBar from "./SearchBar";
-
-
-const api = {
-  key: "",
-  base: "",
-};
+import axios from "axios";
 
 const backgrounds = {
   sunrise:
@@ -38,7 +33,6 @@ const weatherDataObj = {
 };
 
 function WeatherApp() {
-  // const [location, setLocation] = useState("");
   const [data, setData] = useState(weatherDataObj);
 
   const refresh = () => {
@@ -46,16 +40,14 @@ function WeatherApp() {
   };
 
   const getLocationWeather = async (location: string) => {
-    try {
-      const response = await fetch(
-        `${api.base}/weather?q=${location}&units=imperial&APPID=${api.key}`
-      );
-      if (!response.ok) throw new Error("fetch response not ok");
-      const result = await response.json();
-      setData(result);
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .get(`http://localhost:8000/weather/location?city=${location}`)
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -64,16 +56,16 @@ function WeatherApp() {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        try {
-          const response = await fetch(
-            `${api.base}/weather?lat=${latitude}&lon=${longitude}&units=imperial&APPID=${api.key}`
-          );
-          if (!response.ok) throw new Error("fetch response not ok");
-          const result = await response.json();
-          setData(result);
-        } catch (error) {
-          console.log(error);
-        }
+        axios
+          .get(
+            `http://localhost:8000/weather?latitude=${latitude}&longitude=${longitude}`
+          )
+          .then((response) => {
+            setData(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
     };
     fetchData();
@@ -106,7 +98,7 @@ function WeatherApp() {
 
   return (
     <>
-      <SearchBar getWeatherData={getLocationWeather}/>
+      <SearchBar getWeatherData={getLocationWeather} />
       <Stack spacing={2} alignItems="center" mt={5}>
         {data.name != "Globe" && data.name != weatherDataObj.name ? (
           <>
