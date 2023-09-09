@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Weather from "./Weather";
-import { Stack, TextField} from "@mui/material";
+import { Stack} from "@mui/material";
 import { HourglassBottom } from "@mui/icons-material";
 import SearchBar from "./SearchBar";
 

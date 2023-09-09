@@ -1,0 +1,16 @@
+.cls-1 {
+  fill: #efcc00;
+}
+.cls-2,
+.cls-3 {
+  fill: none;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+  stroke-width: 3px;
+}
+.cls-2 {
+  stroke: #efcc00;
+}
+.cls-3 {
+  stroke: #0baeff;
+}
