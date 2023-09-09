@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import moment from "moment";
+import MainWeather from "./MainWeather";
 
 interface Props {
   weatherData: {
@@ -28,18 +29,14 @@ interface Props {
 function Weather({ weatherData }: Props) {
   return (
     <>
-      <Typography variant="h2" sx={{ color: "white" }}>
-        {weatherData.name}
-      </Typography>
-      <Typography variant="h3" sx={{ color: "white" }}>
-        {weatherData.main.temp}&deg;F
-      </Typography>
-      <Typography variant="h5" sx={{ color: "white" }}>
-        {weatherData.weather[0].description}
-      </Typography>
-      <Typography variant="h5" sx={{ color: "white" }}>
-        {weatherData.main.temp_max}&deg;F / {weatherData.main.temp_min}&deg;F
-      </Typography>
+      <MainWeather
+        date={moment().format("dddd") + " " + moment().format("LL")}
+        location={weatherData.name}
+        temp={Math.round(weatherData.main.temp)}
+        max_temp={Math.round(weatherData.main.temp_max)}
+        min_temp={Math.round(weatherData.main.temp_min)}
+        description={weatherData.weather[0].description}
+      />
       <Typography variant="h4" sx={{ color: "white" }}>
         {weatherData.main.humidity}%
       </Typography>
