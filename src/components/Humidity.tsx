@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography } from "@mui/material";
-import HumidityIcon from "./HumidityIcon";
+import HumidityIcon from "./Icons/HumidityIcon";
 
 interface Props {
   humidity: number;

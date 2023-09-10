@@ -1,6 +1,6 @@
 import { Card, CardContent, Typography, Box, Stack } from "@mui/material";
-import SunRiseIcon from "./SunRiseIcon";
-import SunSetIcon from "./SunSetIcon";
+import SunRiseIcon from "./Icons/SunRiseIcon";
+import SunSetIcon from "./Icons/SunSetIcon";
 
 interface Props {
   sunrise: string;

@@ -1,6 +1,6 @@
 
 import { Card, CardContent, Typography } from "@mui/material"
-import WindSpeedIcon from "./WindSpeedIcon"
+import WindSpeedIcon from "./Icons/WindSpeedIcon";
 
 interface Props {
     wind_speed: number

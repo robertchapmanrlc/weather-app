@@ -6,10 +6,10 @@ import {
   Stack,
   Container,
 } from "@mui/material";
-import Sunny from "./Sunny";
-import CloudyNightIcon from "./CloudyNightIcon";
-import NightIcon from "./NightIcon";
-import CloudyDayIcon from "./CloudyDayIcon";
+import Sunny from "./Icons/Sunny";
+import CloudyNightIcon from "./Icons/CloudyNightIcon";
+import NightIcon from "./Icons/NightIcon";
+import CloudyDayIcon from "./Icons/CloudyDayIcon";
 
 interface Props {
   main: string,
