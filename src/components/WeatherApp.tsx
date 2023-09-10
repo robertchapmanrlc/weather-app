@@ -34,11 +34,6 @@ const weatherDataObj = {
 
 function WeatherApp() {
   const [data, setData] = useState(weatherDataObj);
-
-  const refresh = () => {
-    window.location.reload();
-  };
-
   const getLocationWeather = async (location: string) => {
     axios
       .get(`http://localhost:8000/weather/location?city=${location}`)
@@ -92,7 +87,7 @@ function WeatherApp() {
       }
 
       document.body.setAttribute("style", background);
-    }, 30000);
+    }, 300000);
 
     return () => clearInterval(interval);
   }, []);
