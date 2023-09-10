@@ -7,8 +7,12 @@ import {
   Container,
 } from "@mui/material";
 import Sunny from "./Sunny";
+import CloudyNightIcon from "./CloudyNightIcon";
+import NightIcon from "./NightIcon";
+import CloudyDayIcon from "./CloudyDayIcon";
 
 interface Props {
+  main: string,
   date: string;
   location: string;
   temp: number;
@@ -18,6 +22,7 @@ interface Props {
 }
 
 function MainWeather({
+  main,
   date,
   location,
   temp,
@@ -25,6 +30,23 @@ function MainWeather({
   min_temp,
   description,
 }: Props) {
+
+  const getMain = (main: string) => {
+    const time = new Date().getHours();
+    switch (main) {
+      case 'Clouds':
+        if(time >= 7 && time <= 17)
+          return 'Cloudy Day';
+        else return 'Cloudy Night'
+      case 'Clear':
+        if(time >= 7 && time <= 17)
+          return 'Clear Day';
+        else return 'Clear Night'
+    }
+  }
+
+  const icon = getMain(main);
+
   return (
     <>
       <Card
@@ -42,7 +64,18 @@ function MainWeather({
                 minWidth: "250px",
               }}
             >
-              <Sunny />
+              {(() => {
+                switch (icon) {
+                  case 'Cloudy Day':
+                    return <CloudyDayIcon />
+                  case 'Cloudy Night':
+                    return <CloudyNightIcon />
+                  case 'Clear Night':
+                    return <NightIcon />
+                  case 'Clear Day':
+                    return <Sunny />
+                }
+              })()}
             </Container>
             <Box
               minWidth="450px"

@@ -8,10 +8,6 @@ const app = express()
 
 app.use(cors())
 
-app.get('/', (req, res) => {
-    res.json('hi');
-})
-
 const api = {
   base: "https://api.openweathermap.org/data/2.5",
 };

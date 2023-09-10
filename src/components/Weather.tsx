@@ -20,6 +20,7 @@ interface Props {
     };
     weather: {
       description: string;
+      main: string
     }[];
     wind: {
       speed: number;
@@ -34,6 +35,7 @@ function Weather({ weatherData }: Props) {
     <>
       <Stack direction="column" display='flex' justifyContent='center' alignItems='center' spacing={4}>
         <MainWeather
+          main={weatherData.weather[0].main}
           date={moment().format("dddd") + " " + moment().format("LL")}
           location={weatherData.name}
           temp={Math.round(weatherData.main.temp)}

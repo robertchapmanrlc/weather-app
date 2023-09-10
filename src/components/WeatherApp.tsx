@@ -24,7 +24,7 @@ const weatherDataObj = {
   name: "",
   sys: { sunrise: 0, sunset: 0 },
   main: { temp: 0, humidity: 0, temp_max: 0, temp_min: 0 },
-  weather: [{ description: "" }],
+  weather: [{ description: "", main: "" }],
   wind: {
     speed: 0,
   },
@@ -61,6 +61,7 @@ function WeatherApp() {
             `http://localhost:8000/weather?latitude=${latitude}&longitude=${longitude}`
           )
           .then((response) => {
+            console.log(response.data);
             setData(response.data);
           })
           .catch((error) => {
