@@ -1,4 +1,4 @@
-import '../styles/Sunset.css'
+import '../../styles/Sunset.css'
 
 function SunSetIcon() {
   return (

@@ -1,4 +1,4 @@
-import '../styles/Sunrise.css'
+import '../../styles/Sunrise.css'
 
 function SunRiseIcon() {
   return (

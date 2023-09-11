@@ -1,4 +1,4 @@
-import "../styles/Night.css";
+import "../../styles/Night.css";
 
 function NightIcon() {
   return (

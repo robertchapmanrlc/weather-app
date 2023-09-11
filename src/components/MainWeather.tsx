@@ -10,6 +10,7 @@ import Sunny from "./Icons/Sunny";
 import CloudyNightIcon from "./Icons/CloudyNightIcon";
 import NightIcon from "./Icons/NightIcon";
 import CloudyDayIcon from "./Icons/CloudyDayIcon";
+import RainyDayIcon from "./Icons/RainyDayIcon";
 
 interface Props {
   main: string,
@@ -42,6 +43,10 @@ function MainWeather({
         if(time >= 7 && time <= 17)
           return 'Clear Day';
         else return 'Clear Night'
+      case 'Rain':
+        if (time >= 7 && time <= 17)
+          return 'Rainy Day';
+        else return 'Rainy Night';
     }
   }
 
@@ -74,6 +79,10 @@ function MainWeather({
                     return <NightIcon />
                   case 'Clear Day':
                     return <Sunny />
+                  case 'Rainy Day':
+                    return <RainyDayIcon />
+                  case 'Rainy Night':
+                    return;
                 }
               })()}
             </Container>

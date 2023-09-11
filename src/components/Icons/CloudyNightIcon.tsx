@@ -1,4 +1,4 @@
-import '../styles/CloudyNight.css'
+import '../../styles/CloudyNight.css'
 
 function CloudyNightIcon() {
   return (
