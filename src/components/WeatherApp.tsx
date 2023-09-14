@@ -3,6 +3,7 @@ import Weather from "./Weather";
 import { Stack } from "@mui/material";
 import { HourglassBottom } from "@mui/icons-material";
 import SearchBar from "./SearchBar";
+import '../App.css'
 
 const backgrounds = {
   sunrise:
@@ -102,7 +103,7 @@ function WeatherApp() {
           </>
         ) : (
           <>
-            <HourglassBottom></HourglassBottom>
+            <HourglassBottom className="loading"/>
           </>
         )}
       </Stack>
