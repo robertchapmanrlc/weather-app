@@ -31,7 +31,7 @@ function CloudyDayIcon() {
                 <line
                   fill="none"
                   stroke="orange"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeWidth="2"
                   transform="translate(0,9)"
                   x1="0"
@@ -44,7 +44,7 @@ function CloudyDayIcon() {
                 <line
                   fill="none"
                   stroke="orange"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeWidth="2"
                   transform="translate(0,9)"
                   x1="0"
@@ -57,7 +57,7 @@ function CloudyDayIcon() {
                 <line
                   fill="none"
                   stroke="orange"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeWidth="2"
                   transform="translate(0,9)"
                   x1="0"
@@ -70,7 +70,7 @@ function CloudyDayIcon() {
                 <line
                   fill="none"
                   stroke="orange"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeWidth="2"
                   transform="translate(0,9)"
                   x1="0"
@@ -83,7 +83,7 @@ function CloudyDayIcon() {
                 <line
                   fill="none"
                   stroke="orange"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeWidth="2"
                   transform="translate(0,9)"
                   x1="0"
@@ -96,7 +96,7 @@ function CloudyDayIcon() {
                 <line
                   fill="none"
                   stroke="orange"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeWidth="2"
                   transform="translate(0,9)"
                   x1="0"
@@ -109,7 +109,7 @@ function CloudyDayIcon() {
                 <line
                   fill="none"
                   stroke="orange"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeWidth="2"
                   transform="translate(0,9)"
                   x1="0"
@@ -122,7 +122,7 @@ function CloudyDayIcon() {
                 <line
                   fill="none"
                   stroke="orange"
-                  stroke-linecap="round"
+                  strokeLinecap="round"
                   strokeWidth="2"
                   transform="translate(0,9)"
                   x1="0"
