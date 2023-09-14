@@ -1,4 +1,4 @@
-import '../../App.css'
+import '../../styles/Sun.css'
 
 function Sunny() {
   return (
