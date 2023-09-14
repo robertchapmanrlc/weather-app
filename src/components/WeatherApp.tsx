@@ -3,7 +3,6 @@ import Weather from "./Weather";
 import { Stack } from "@mui/material";
 import { HourglassBottom } from "@mui/icons-material";
 import SearchBar from "./SearchBar";
-import axios from "axios";
 
 const backgrounds = {
   sunrise:
@@ -35,14 +34,16 @@ const weatherDataObj = {
 function WeatherApp() {
   const [data, setData] = useState(weatherDataObj);
   const getLocationWeather = async (location: string) => {
-    axios
-      .get(`http://localhost:8000/weather/location?city=${location}`)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const response = await fetch(
+        `https://dlp5ksdmu2qelmhivujtpqng7q0fvwjn.lambda-url.us-east-2.on.aws/?city=${location}`
+      );
+      if (!response.ok) throw new Error("fetch response not ok");
+      const result = await response.json();
+      setData(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -51,17 +52,16 @@ function WeatherApp() {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
-        axios
-          .get(
-            `http://localhost:8000/weather?latitude=${latitude}&longitude=${longitude}`
-          )
-          .then((response) => {
-            console.log(response.data);
-            setData(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        try {
+          const response = await fetch(
+            `https://i2ysip2a4k22qbqyjg5tclyfay0aengu.lambda-url.us-east-2.on.aws/?latitude=${latitude}&longitude=${longitude}`
+          );
+          if (!response.ok) throw new Error("fetch response not ok");
+          const result = await response.json();
+          setData(result);
+        } catch (error) {
+          console.log(error);
+        }
       });
     };
     fetchData();
