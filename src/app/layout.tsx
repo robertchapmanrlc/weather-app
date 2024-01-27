@@ -1,5 +1,9 @@
 
-import './globals.css'
+import "./globals.css";
+import {
+  calculateTimeOfDay,
+  getTimeOfDayGradientClass,
+} from "../utilities/timeUtils";
 
 export const metadata = {
   title: "Weather App",
@@ -12,11 +16,12 @@ export const metadata = {
   },
   keywords: ["weather", "forecast", "web app", "next.js", "react"],
   urls: {
-    repository: "https://github.com/robertchapmanrlc/weather-app/"
+    repository: "https://github.com/robertchapmanrlc/weather-app/",
   },
   social: {
     title: "Weather App - Check the Weather",
-    description: "A web application to check the weather with a clean interface"
+    description:
+      "A web application to check the weather with a clean interface",
   },
   language: "en",
   locale: "en_US",
@@ -30,8 +35,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const timeOfDay = calculateTimeOfDay();
+
+  const gradientClass = `h-screen ${getTimeOfDayGradientClass(
+    timeOfDay
+  )} text-white`;
+
   return (
-    <html lang="en" className='h-screen bg-gradient-to-b from-sky-blue to-deep-sky-blue text-white'>
+    <html lang="en" className={gradientClass}>
       <body>{children}</body>
     </html>
   );

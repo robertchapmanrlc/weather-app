@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-gradient-morning {
+  background: linear-gradient(to bottom, #FFDDBB, #87CEEB);
+}
+
+.bg-gradient-afternoon {
+  background: linear-gradient(to bottom, #87CEEB, #00BFFF);
+}
+
+.bg-gradient-evening {
+  background: linear-gradient(to bottom, #FF6F61, #4B0082);
+}
+
+.bg-gradient-night {
+  background: linear-gradient(to bottom, #191970, #000000);
+}
