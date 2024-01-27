@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className='h-screen bg-gradient-to-b from-sky-blue to-deep-sky-blue text-white'>
       <body>{children}</body>
     </html>
   );
