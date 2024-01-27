@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  min-height: 100%;
+}
+
 .bg-gradient-morning {
   background: linear-gradient(to bottom, #ffddbb, #e1f0ea, #87ceeb);
 }

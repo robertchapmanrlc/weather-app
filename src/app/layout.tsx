@@ -38,13 +38,13 @@ export default function RootLayout({
 
   const timeOfDay = calculateTimeOfDay();
 
-  const gradientClass = `h-screen ${getTimeOfDayGradientClass(
+  const gradientClass = `${getTimeOfDayGradientClass(
     timeOfDay
   )} text-white`;
 
   return (
     <html lang="en" className={gradientClass}>
-      <body>{children}</body>
+      <body className="h-full">{children}</body>
     </html>
   );
 }
