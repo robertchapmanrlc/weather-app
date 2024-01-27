@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  min-height: 100%;
+}
+
+.bg-gradient-morning {
+  background: linear-gradient(to bottom, #ffddbb, #e1f0ea, #87ceeb);
+}
+
+.bg-gradient-afternoon {
+  background: linear-gradient(to bottom, #87ceeb, #48c7f5, #00bfff);
+}
+
+.bg-gradient-evening {
+  background: linear-gradient(to bottom, #ff6f61, #cc468d, #4b0082);
+}
+
+.bg-gradient-night {
+  background: linear-gradient(to bottom, #191970, #16165c, #000000);
+}
