@@ -55,13 +55,13 @@ export default function SearchBar() {
     <div
       className={`w-[40%] h-10 px-4 bg-black ${
         !isFocused && "bg-opacity-25"
-      } flex rounded-md transition-all duration-300`}
+      } flex rounded-md transition-bg duration-300`}
     >
-      <Image width={20} height={20} src={SearchIcon} alt="Search Icon" className={`${isFocused ? 'opacity-100' : 'opacity-50'} transition-all duration-300`} />
+      <Image width={20} height={20} src={SearchIcon} alt="Search Icon" className={`${isFocused ? 'opacity-100' : 'opacity-50'} transition-opacity duration-300`} />
       <input
         type="text"
         placeholder="Enter Location"
-        className="w-full h-full bg-transparent pl-3 text-white/50 text-xl placeholder:text-white/50 outline-none transition-all duration-300 focus:text-white"
+        className="w-full h-full bg-transparent pl-3 text-white/50 text-xl placeholder:text-white/50 outline-none transition-opacity duration-300 focus:text-white"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
