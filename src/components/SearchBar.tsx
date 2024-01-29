@@ -42,17 +42,28 @@
 
 // export default SearchBar;
 
+"use client";
+
 import Image from "next/image";
 import SearchIcon from "../assets/Search Icon.svg";
+import { useState } from "react";
 
 export default function SearchBar() {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
   return (
-    <div className={`w-[40%] h-10 px-4 bg-black/25 flex rounded-md`}>
+    <div
+      className={`w-[40%] h-10 px-4 bg-black ${
+        !isFocused && "bg-opacity-25"
+      } flex rounded-md transition-all duration-300`}
+    >
       <Image width={20} height={20} src={SearchIcon} alt="Search Icon" />
       <input
         type="text"
         placeholder="Enter Location"
         className="w-full h-full bg-transparent pl-3 text-white/50 text-xl placeholder:text-white/50 outline-none transition-all duration-300 focus:text-white"
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
     </div>
   );
