@@ -54,7 +54,7 @@ export default function SearchBar() {
   return (
     <div
       className={`w-[40%] h-10 px-4 bg-black ${
-        !isFocused && "bg-opacity-25"
+        !isFocused ? "bg-opacity-25" : "bg-opacity-75"
       } flex rounded-md transition-bg duration-300`}
     >
       <Image width={20} height={20} src={SearchIcon} alt="Search Icon" className={`${isFocused ? 'opacity-100' : 'opacity-50'} transition-opacity duration-300`} />
