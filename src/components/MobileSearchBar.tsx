@@ -6,8 +6,8 @@ import { useState } from "react";
 import SearchIcon from "../assets/Search Icon.svg";
 
 export default function MobileSearchBar() {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
@@ -26,7 +26,7 @@ export default function MobileSearchBar() {
           <input
             type="text"
             placeholder="Search"
-            className="w-[75%] h-8 ml-5 px-4 bg-black bg-opacity-75 text-white rounded-md outline-none"
+            className="w-[75%] h-8 ml-5 px-4 bg-black bg-opacity-25 text-white placeholder:text-white/50 focus:bg-opacity-75 rounded-md outline-none transition-bg duration-300"
           />
         )}
       </div>
