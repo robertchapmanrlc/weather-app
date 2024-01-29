@@ -57,7 +57,7 @@ export default function SearchBar() {
         !isFocused && "bg-opacity-25"
       } flex rounded-md transition-all duration-300`}
     >
-      <Image width={20} height={20} src={SearchIcon} alt="Search Icon" />
+      <Image width={20} height={20} src={SearchIcon} alt="Search Icon" className={`${isFocused ? 'opacity-100' : 'opacity-50'} transition-all duration-300`} />
       <input
         type="text"
         placeholder="Enter Location"
