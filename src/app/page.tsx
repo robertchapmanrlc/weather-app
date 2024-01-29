@@ -1,3 +1,4 @@
+import MobileSearchBar from "../components/MobileSearchBar";
 import SearchBar from "../components/SearchBar";
 
 export default function Main() {
@@ -6,6 +7,7 @@ export default function Main() {
       <div className="hidden sm:flex w-full justify-center">
         <SearchBar />
       </div>
+      <MobileSearchBar />
     </main>
   );
 }
