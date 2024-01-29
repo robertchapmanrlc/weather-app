@@ -47,12 +47,12 @@ import SearchIcon from "../assets/Search Icon.svg";
 
 export default function SearchBar() {
   return (
-    <div className="w-[40%] h-10 px-4 bg-black/25 flex rounded-md">
+    <div className={`w-[40%] h-10 px-4 bg-black/25 flex rounded-md`}>
       <Image width={20} height={20} src={SearchIcon} alt="Search Icon" />
       <input
         type="text"
         placeholder="Enter Location"
-        className="w-full h-full bg-transparent pl-3 text-white text-xl placeholder:text-white/50 outline-none"
+        className="w-full h-full bg-transparent pl-3 text-white/50 text-xl placeholder:text-white/50 outline-none transition-all duration-300 focus:text-white"
       />
     </div>
   );
