@@ -42,6 +42,18 @@
 
 // export default SearchBar;
 
+import Image from "next/image";
+import SearchIcon from "../assets/Search Icon.svg";
+
 export default function SearchBar() {
-  return <input type="text" placeholder="Enter Location" className="w-[40%] h-10 bg-black/25 rounded-md text-white text-xl placeholder:text-white/50" />
+  return (
+    <div className="w-[40%] h-10 px-4 bg-black/25 flex rounded-md">
+      <Image width={20} height={20} src={SearchIcon} alt="Search Icon" />
+      <input
+        type="text"
+        placeholder="Enter Location"
+        className="w-full h-full bg-transparent pl-3 text-white text-xl placeholder:text-white/50 outline-none"
+      />
+    </div>
+  );
 }
