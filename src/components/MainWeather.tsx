@@ -1,125 +1,33 @@
-import {
-  Typography,
-  Card,
-  CardContent,
-  Box,
-  Stack,
-  Container,
-} from "@mui/material";
-import Sunny from "./Icons/Sunny";
-import CloudyNightIcon from "./Icons/CloudyNightIcon";
-import NightIcon from "./Icons/NightIcon";
-import CloudyDayIcon from "./Icons/CloudyDayIcon";
-import RainyDayIcon from "./Icons/RainyDayIcon";
-import ThunderIcon from "./Icons/ThunderIcon";
-import RainyNightIcon from "./Icons/RainyNightIcon";
+import Image from "next/image";
 
-interface Props {
-  main: string,
-  date: string;
-  location: string;
-  temp: number;
-  description: string;
-  max_temp: number;
-  min_temp: number;
-}
+import SunIcon from './../assets/Sun.svg';
+import PrecipitationIcon from './../assets/Precipitation.svg';
+import HumidityIcon from './../assets/Humidity.svg';
+import WindSpeedIcon from './../assets/Wind Speed.svg';
 
-function MainWeather({
-  main,
-  date,
-  location,
-  temp,
-  max_temp,
-  min_temp,
-  description,
-}: Props) {
-
-  const getMain = (main: string) => {
-    const time = new Date().getHours();
-    switch (main) {
-      case 'Clouds':
-        if(time >= 7 && time <= 17)
-          return 'Cloudy Day';
-        else return 'Cloudy Night'
-      case 'Clear':
-        if(time >= 7 && time <= 17)
-          return 'Clear Day';
-        else return 'Clear Night'
-      case 'Rain':
-        if (time >= 7 && time <= 17)
-          return 'Rainy Day';
-        else return 'Rainy Night';
-      case 'Thunderstorm':
-        return 'Thunder';
-    }
-  }
-
-  const icon = getMain(main);
-
+export default function MainWeather() {
+  
   return (
-    <>
-      <Card
-        style={{
-          backgroundColor: "rgba(255, 255, 255, 0.25)",
-        }}
-      >
-        <CardContent>
-          <Stack direction="row" spacing={5}>
-            <Container
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                minWidth: "250px",
-              }}
-            >
-              {(() => {
-                switch (icon) {
-                  case 'Cloudy Day':
-                    return <CloudyDayIcon />
-                  case 'Cloudy Night':
-                    return <CloudyNightIcon />
-                  case 'Clear Night':
-                    return <NightIcon />
-                  case 'Clear Day':
-                    return <Sunny />
-                  case 'Rainy Day':
-                    return <RainyDayIcon />
-                  case 'Rainy Night':
-                    return <RainyNightIcon />;
-                  case 'Thunder':
-                    return <ThunderIcon />
-                }
-              })()}
-            </Container>
-            <Box
-              minWidth="450px"
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="start"
-            >
-              <Typography variant="h5" sx={{ color: "white" }}>
-                {date}
-              </Typography>
-              <Typography variant="h2" sx={{ color: "white" }}>
-                {location}
-              </Typography>
-              <Typography variant="h3" sx={{ color: "white" }}>
-                {temp}&deg;F
-              </Typography>
-              <Typography variant="h5" sx={{ color: "white" }}>
-                {description}
-              </Typography>
-              <Typography variant="h5" sx={{ color: "white" }}>
-                {max_temp}&deg;F / {min_temp}&deg;F
-              </Typography>
-            </Box>
-          </Stack>
-        </CardContent>
-      </Card>
-    </>
+    <div className="w-full sm:max-w-[450px] h-[400px] pt-5 bg-transparent sm:bg-black/25 flex flex-col gap-y-6 items-center justify-start rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
+      <h2 className="hidden sm:block text-3xl text-white">Chicago, IL</h2>
+      <Image width={120} height={120} src={SunIcon} alt="Sun Icon" />
+      <h1 className="font-bold text-5xl text-white">72 °F</h1>
+      <h4 className="sm:hidden text-2xl text-white opacity-70">Mostly Sunny</h4>
+      <div className="w-[80%] px-3 py-2 sm:py-0 flex flex-row justify-between items-start bg-black/25 rounded-lg sm:bg-transparent">
+        <div className="flex flex-row gap-x-3">
+          <Image width={20} height={20} src={PrecipitationIcon} alt="Precipitation Icon"/>
+          <h5 className="font-light text-white">24%</h5>
+        </div>
+        <div className="flex flex-row gap-x-3">
+          <Image width={20} height={20} src={HumidityIcon} alt="Humidity Icon"/>
+          <h5 className="font-light text-white">24%</h5>
+        </div>
+        <div className="flex flex-row gap-x-3">
+          <Image width={20} height={20} src={WindSpeedIcon} alt="Wind Speed Icon"/>
+          <h5 className="font-light text-white">24%</h5>
+        </div>
+      </div>
+      <h4 className="hidden sm:block text-2xl text-white opacity-70">Mostly Sunny</h4>
+    </div>
   );
 }
-
-export default MainWeather;
