@@ -1,3 +1,4 @@
+import HourlyForecast from "../components/HourlyForecast";
 import MainWeather from "../components/MainWeather";
 import MobileSearchBar from "../components/MobileSearchBar";
 import SearchBar from "../components/SearchBar";
@@ -8,6 +9,7 @@ export default function Main() {
       <SearchBar />
       <MobileSearchBar />
       <MainWeather />
+      <HourlyForecast />
     </main>
   );
 }
