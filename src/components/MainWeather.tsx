@@ -8,7 +8,7 @@ import WindSpeedIcon from './../assets/Wind Speed.svg';
 export default function MainWeather() {
   
   return (
-    <div className="w-full sm:max-w-[450px] h-[400px] pt-5 bg-transparent sm:bg-black/25 flex flex-col gap-y-6 items-center justify-start rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
+    <div className="w-full sm:max-w-[450px] h-[400px] sm:pt-5 bg-transparent sm:bg-black/25 flex flex-col gap-y-6 items-center sm:justify-start justify-center rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <h2 className="hidden sm:block text-3xl text-white">Chicago, IL</h2>
       <Image width={120} height={120} src={SunIcon} alt="Sun Icon" />
       <h1 className="font-bold text-5xl text-white">72 °F</h1>

@@ -8,8 +8,10 @@ export default function Main() {
     <main className="w-full flex flex-col pt-[40px] justify-start items-center gap-y-10">
       <SearchBar />
       <MobileSearchBar />
-      <MainWeather />
-      <HourlyForecast />
+      <div className="w-full flex flex-col sm:flex-row-reverse justify-center items-center sm:gap-x-16">
+        <MainWeather />
+        <HourlyForecast />
+      </div>
     </main>
   );
 }
