@@ -9,11 +9,19 @@ export default function SearchBar() {
 
   return (
     <div
-      className={`w-full hidden sm:flex sm:max-w-[400px] md:max-w-[500px] h-10 px-4 bg-black ${
+      className={`w-full hidden lg:flex lg:max-w-[400px] md:max-w-[500px] h-10 px-4 bg-black ${
         !isFocused ? "bg-opacity-25" : "bg-opacity-75"
       } flex rounded-md transition-bg duration-300`}
     >
-      <Image width={20} height={20} src={SearchIcon} alt="Search Icon" className={`${isFocused ? 'opacity-100' : 'opacity-50'} transition-opacity duration-300`} />
+      <Image
+        width={20}
+        height={20}
+        src={SearchIcon}
+        alt="Search Icon"
+        className={`${
+          isFocused ? "opacity-100" : "opacity-50"
+        } transition-opacity duration-300`}
+      />
       <input
         type="text"
         placeholder="Enter Location"
