@@ -6,7 +6,7 @@ import SunIcon from '../assets/Sun.svg';
 
 export default function HourlyForecast() {
   return (
-    <div className="w-[80%] sm:max-w-[325px] h-[400px] px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
+    <div className="w-full md:max-w-[325px] h-[400px] px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <div className="w-full flex justify-between">
         <h2 className="text-white text-2xl font-bold">Today</h2>
         <h2 className="text-white text-2xl">Feb, 5</h2>
