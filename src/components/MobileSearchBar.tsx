@@ -14,7 +14,7 @@ export default function MobileSearchBar() {
   };
 
   return (
-    <div className="lg:hidden w-full px-6">
+    <div className="lg:hidden w-full">
       <div className="flex">
         <Image
           src={SearchIcon}
