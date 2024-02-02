@@ -12,7 +12,7 @@ export default function MainWeather() {
       <Image width={120} height={120} src={SunIcon} alt="Sun Icon" />
       <h1 className="font-bold text-5xl text-white">72 °F</h1>
       <h4 className="md:hidden text-2xl text-white opacity-70">Mostly Sunny</h4>
-      <div className="w-full px-3 py-2 md:py-0 flex flex-row justify-between items-start bg-black/25 rounded-lg md:bg-transparent">
+      <div className="w-full px-7 py-2 md:py-0 flex flex-row justify-between items-start bg-black/25 rounded-lg md:bg-transparent">
         <div className="flex flex-row gap-x-3">
           <Image
             width={20}

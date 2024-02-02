@@ -9,7 +9,7 @@ export default function SearchBar() {
 
   return (
     <div
-      className={`w-full hidden lg:flex lg:max-w-[400px] md:max-w-[500px] h-10 px-4 bg-black ${
+      className={`w-full hidden md:flex lg:max-w-[400px] md:max-w-[500px] h-10 px-4 bg-black ${
         !isFocused ? "bg-opacity-25" : "bg-opacity-75"
       } flex rounded-md transition-bg duration-300`}
     >

@@ -6,7 +6,7 @@ import SunIcon from "../assets/Sun.svg";
 
 export default function DailyForecast() {
   return (
-    <div className="w-full sm:w-[90%] md:max-w-[840px] h-[200px] px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
+    <div className="w-full lg:max-w-[840px] h-[200px] px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <h2 className="text-white text-2xl font-bold">Forecast</h2>
       <div className="w-full h-[85%] flex flex-row justify-between">
         <div className="w-24 h-28 px-3 py-2 bg-black/35 flex flex-col items-center justify-between rounded-md">
