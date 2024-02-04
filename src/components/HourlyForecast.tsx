@@ -1,8 +1,7 @@
-
 import Image from "next/image";
 
-import CloudyIcon from '../assets/Cloudy.svg';
-import SunIcon from '../assets/Sun.svg';
+import CloudyIcon from "../assets/Cloudy.svg";
+import SunIcon from "../assets/Sun.svg";
 
 export default function HourlyForecast() {
   return (
@@ -12,27 +11,27 @@ export default function HourlyForecast() {
         <h2 className="text-white text-2xl">Feb, 5</h2>
       </div>
       <div className="w-full h-[85%] flex flex-col justify-between">
-        <div className="w-full h-10 px-3 bg-black/35 flex flex-row items-center justify-between rounded-md">
+        <div className="w-full h-10 flex flex-row items-center justify-between rounded-md">
           <h5 className="text-white">66 °F</h5>
           <Image width={30} height={30} src={CloudyIcon} alt="Cloudy Icon" />
           <h5 className="text-white/60">12:00pm</h5>
         </div>
-        <div className="w-full h-10 px-3 bg-black/35 flex flex-row items-center justify-between rounded-md">
+        <div className="w-full h-10 flex flex-row items-center justify-between rounded-md">
           <h5 className="text-white">70 °F</h5>
           <Image width={30} height={30} src={SunIcon} alt="Cloudy Icon" />
           <h5 className="text-white/60">2:00pm</h5>
         </div>
-        <div className="w-full h-10 px-3 bg-black/35 flex flex-row items-center justify-between rounded-md">
+        <div className="w-full h-10 flex flex-row items-center justify-between rounded-md">
           <h5 className="text-white">74 °F</h5>
           <Image width={30} height={30} src={CloudyIcon} alt="Cloudy Icon" />
           <h5 className="text-white/60">4:00pm</h5>
         </div>
-        <div className="w-full h-10 px-3 bg-black/35 flex flex-row items-center justify-between rounded-md">
+        <div className="w-full h-10 flex flex-row items-center justify-between rounded-md">
           <h5 className="text-white">72 °F</h5>
           <Image width={30} height={30} src={CloudyIcon} alt="Cloudy Icon" />
           <h5 className="text-white/60">6:00pm</h5>
         </div>
-        <div className="w-full h-10 px-3 bg-black/35 flex flex-row items-center justify-between rounded-md">
+        <div className="w-full h-10 flex flex-row items-center justify-between rounded-md">
           <h5 className="text-white">68 °F</h5>
           <Image width={30} height={30} src={SunIcon} alt="Cloudy Icon" />
           <h5 className="text-white/60">8:00pm</h5>
