@@ -4,8 +4,13 @@ import SunIcon from "./../assets/Sun.svg";
 import PrecipitationIcon from "./../assets/Precipitation.svg";
 import HumidityIcon from "./../assets/Humidity.svg";
 import WindSpeedIcon from "./../assets/Wind Speed.svg";
+import { getLocationWeather } from "../api/weatherApi";
 
-export default function MainWeather() {
+export default async function MainWeather() {
+
+  const data = await getLocationWeather();
+  console.log(data);
+
   return (
     <div className="w-full md:max-w-[450px] h-[400px] md:pt-5 bg-transparent md:bg-black/25 flex flex-col gap-y-6 items-center md:justify-start justify-center rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <h2 className="hidden md:block text-3xl text-white">Chicago, IL</h2>
