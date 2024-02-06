@@ -1,15 +1,20 @@
+"use client";
+
 import Image from "next/image";
 
 import SunIcon from "./../assets/Sun.svg";
 import PrecipitationIcon from "./../assets/Precipitation.svg";
 import HumidityIcon from "./../assets/Humidity.svg";
 import WindSpeedIcon from "./../assets/Wind Speed.svg";
+import { useWeatherContext } from "../context/weather-context";
 
 export default async function MainWeather() {
-  const latitude = 41.87;
-  const longitude = -87.62;
+
+  const { location } = useWeatherContext();
+
   const res = await fetch(
-    `http://localhost:3000/api/weather?lat=${latitude}&lon=${longitude}`
+    `http://localhost:3000/api/weather?lat=${location.latitude}&lon=${location.longitude}`,
+    { cache: "no-store" }
   );
   const data = await res.json();
 
@@ -22,15 +27,17 @@ export default async function MainWeather() {
         {data.weatherDescription}
       </h4>
       <div className="w-full px-7 py-2 md:py-0 flex flex-row justify-between items-start bg-black/25 rounded-lg md:bg-transparent">
-        {data.precipitation && <div className="flex flex-row gap-x-3">
-          <Image
-            width={20}
-            height={20}
-            src={PrecipitationIcon}
-            alt="Precipitation Icon"
-          />
-          <h5 className="font-light text-white">{data.precipitation}%</h5>
-        </div>}
+        {data.precipitation && (
+          <div className="flex flex-row gap-x-3">
+            <Image
+              width={20}
+              height={20}
+              src={PrecipitationIcon}
+              alt="Precipitation Icon"
+            />
+            <h5 className="font-light text-white">{data.precipitation}%</h5>
+          </div>
+        )}
         <div className="flex flex-row gap-x-3">
           <Image
             width={20}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 
 const WeatherContext = createContext<WeatherContextType | null>(null);
 
@@ -10,13 +10,13 @@ type WeatherContextProviderProps = {
 
 type WeatherContextType = {
   location: {
-    latitude: number | null;
-    longitude: number | null;
+    latitude: number;
+    longitude: number;
   };
   setLocation: React.Dispatch<
     React.SetStateAction<{
-      latitude: null;
-      longitude: null;
+      latitude: number;
+      longitude: number;
     }>
   >;
 };
@@ -25,8 +25,8 @@ export default function WeatherContextProvider({
   children,
 }: WeatherContextProviderProps) {
   const [location, setLocation] = useState({
-    latitude: null,
-    longitude: null,
+    latitude: 41.87,
+    longitude: -87.62,
   });
 
   return (
