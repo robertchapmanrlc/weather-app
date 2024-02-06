@@ -4,6 +4,7 @@ import {
   calculateTimeOfDay,
   getTimeOfDayGradientClass,
 } from "../utilities/timeUtils";
+import WeatherContextProvider from "../context/weather-context";
 
 export const metadata = {
   title: "Weather App",
@@ -44,7 +45,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={gradientClass}>
-      <body className="h-full">{children}</body>
+      <body className="h-full">
+        <WeatherContextProvider>
+          {children}
+        </WeatherContextProvider>
+      </body>
     </html>
   );
 }
