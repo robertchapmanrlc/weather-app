@@ -4,8 +4,17 @@ export async function getLocationWeather() {
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    const errorMessage = `Failed to fetch data. Status: ${res.status}, ${res.statusText}`;
+    throw new Error(errorMessage);
   }
 
-  return res.json();
+  const data = await res.json();
+
+  if (data.cod !== 200) {
+    throw new Error(
+      `Failed to fetch data. Cod: ${data.cod}, Message: ${data.message}`
+    );
+  }
+
+  return data;
 }
