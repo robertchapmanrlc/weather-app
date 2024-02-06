@@ -39,7 +39,9 @@ export async function getLocationWeather() {
     );
   }
 
-  return data;
+  const weatherInfo = extractWeatherInfo(data);
+
+  return weatherInfo;
 }
 
 function extractWeatherInfo(apiResponse: WeatherApiResponse) {
