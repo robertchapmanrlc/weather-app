@@ -4,11 +4,14 @@ import SunIcon from "./../assets/Sun.svg";
 import PrecipitationIcon from "./../assets/Precipitation.svg";
 import HumidityIcon from "./../assets/Humidity.svg";
 import WindSpeedIcon from "./../assets/Wind Speed.svg";
-import { getLocationWeather } from "../api/weatherApi";
 
 export default async function MainWeather() {
-  const data = await getLocationWeather();
-  console.log(data);
+  const latitude = 41.87;
+  const longitude = -87.62;
+  const res = await fetch(
+    `http://localhost:3000/api/weather?lat=${latitude}&lon=${longitude}`
+  );
+  const data = await res.json();
 
   return (
     <div className="w-full md:max-w-[450px] h-[400px] md:pt-5 bg-transparent md:bg-black/25 flex flex-col gap-y-6 items-center md:justify-start justify-center rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
