@@ -26,6 +26,12 @@ interface ExtractedHourlyForecastInfo {
   temp: number;
 }
 
+interface ExtractedDailyForecastInfo {
+  date: string;
+  max_temp: number;
+  min_temp: number;
+}
+
 interface Forecast {
   forecastday: Forecastday[];
 }
@@ -49,4 +55,4 @@ interface Day {
   mintemp_f: number;
 }
 
-export type { OpenWeatherApiResponse, ExtractedWeatherInfo, Forecast, ExtractedHourlyForecastInfo };
+export type { OpenWeatherApiResponse, ExtractedWeatherInfo, Forecast, ExtractedHourlyForecastInfo, ExtractedDailyForecastInfo };
