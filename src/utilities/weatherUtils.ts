@@ -1,9 +1,9 @@
 import {
-  WeatherApiResponse,
+  OpenWeatherApiResponse,
   ExtractedWeatherInfo,
 } from "../types/weatherTypes";
 
-export function extractWeatherInfo(apiResponse: WeatherApiResponse) {
+export function extractWeatherInfo(apiResponse: OpenWeatherApiResponse) {
   if (!apiResponse || apiResponse.cod !== 200) {
     throw new Error("Invalid API Response");
   }
