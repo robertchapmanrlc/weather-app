@@ -3,12 +3,16 @@ import Image from "next/image";
 import CloudyIcon from "../assets/Cloudy.svg";
 import SunIcon from "../assets/Sun.svg";
 
-export default function HourlyForecast() {
+export default async function HourlyForecast() {
+
+  const date = new Date();
+  const dateString = date.toString().substring(4, 7) + ", " + date.getDate();
+
   return (
     <div className="w-full md:max-w-[325px] h-56 md:h-[400px] px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <div className="w-full flex justify-between">
         <h2 className="text-white text-2xl font-bold">Today</h2>
-        <h2 className="text-white text-2xl">Feb, 5</h2>
+        <h2 className="text-white text-2xl">{dateString}</h2>
       </div>
       <div className="w-full h-[85%] flex flex-row md:flex-col justify-between">
         <div className="w-full md:h-10 flex flex-col md:flex-row items-center justify-between rounded-md">
