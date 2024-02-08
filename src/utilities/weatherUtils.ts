@@ -20,9 +20,9 @@ export function extractWeatherInfo(apiResponse: OpenWeatherApiResponse) {
   const precipitation = rain ? rain["1h"] : null;
 
   const extractedInfo: ExtractedWeatherInfo = {
-    temperature: temp,
+    temperature: Math.round(temp),
     humidity,
-    windSpeed: speed,
+    windSpeed: Math.round(speed),
     precipitation,
     weatherDescription,
   };
