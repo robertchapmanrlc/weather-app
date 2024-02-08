@@ -7,7 +7,7 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
   if (hour < 15) {
     for (let index = 0; index < 5; index++) {
       data.push({
-        temp: forecast.forecastday[0].hour[hour + index * 2].temp_f,
+        temp: Math.round(forecast.forecastday[0].hour[hour + index * 2].temp_f),
         time: convertToAmPm(forecast.forecastday[0].hour[hour + index * 2].time),
       });
     }
@@ -15,12 +15,12 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
     for (let index = 0; index < 5; index++) {
       if (hour + index * 2 < 23) {
         data.push({
-          temp: forecast.forecastday[0].hour[(hour + index * 2) % 23].temp_f,
+          temp: Math.round(forecast.forecastday[0].hour[hour + index * 2].temp_f),
           time: convertToAmPm(forecast.forecastday[0].hour[hour + index * 2].time),
         });
       } else {
         data.push({
-          temp: forecast.forecastday[1].hour[(hour + index * 2) % 23].temp_f,
+          temp: Math.round(forecast.forecastday[1].hour[hour + index * 2].temp_f),
           time: convertToAmPm(forecast.forecastday[1].hour[hour + index * 2].time),
         });
       }
@@ -36,8 +36,8 @@ export function extractDailyForecastInfo(forecast: Forecast) {
   for (let index = 0; index < 5; index++) {
     info.push({
       date: forecast.forecastday[index].date.toString(),
-      max_temp: forecast.forecastday[index].day.maxtemp_f,
-      min_temp: forecast.forecastday[index].day.mintemp_f,
+      max_temp: Math.round(forecast.forecastday[index].day.maxtemp_f),
+      min_temp: Math.round(forecast.forecastday[index].day.mintemp_f),
     });
   }
 
