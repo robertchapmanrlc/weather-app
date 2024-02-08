@@ -1,12 +1,25 @@
+"use client"
+
 import Image from "next/image";
 
 import CloudyIcon from "../assets/Cloudy.svg";
 import SunIcon from "../assets/Sun.svg";
+import { useWeatherContext } from "../context/weather-context";
+import { ExtractedHourlyForecastInfo } from "../types/weatherTypes";
 
 export default async function HourlyForecast() {
 
+  const { location } = useWeatherContext();
   const date = new Date();
   const dateString = date.toString().substring(4, 7) + ", " + date.getDate();
+  const time = date.getHours();
+
+  const res = await fetch(
+    `http://localhost:3000/api/forecast/hourly?lat=${location.latitude}&lon=${location.longitude}&time=${time}`,
+    { cache: "no-store" }
+  );
+
+  const data: ExtractedHourlyForecastInfo[] = await res.json();
 
   return (
     <div className="w-full md:max-w-[325px] h-56 md:h-[400px] px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
