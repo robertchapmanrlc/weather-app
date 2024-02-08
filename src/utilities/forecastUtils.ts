@@ -35,7 +35,7 @@ export function extractDailyForecastInfo(forecast: Forecast) {
 
   for (let index = 0; index < 5; index++) {
     info.push({
-      date: forecast.forecastday[index].date.toString(),
+      date: new Date(forecast.forecastday[index].date.toString()).toLocaleDateString(undefined, {weekday: 'long'}),
       max_temp: Math.round(forecast.forecastday[index].day.maxtemp_f),
       min_temp: Math.round(forecast.forecastday[index].day.mintemp_f),
     });
