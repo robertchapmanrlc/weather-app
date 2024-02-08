@@ -1,4 +1,5 @@
 import { ExtractedDailyForecastInfo, ExtractedHourlyForecastInfo, Forecast } from "../types/weatherTypes";
+import { convertToAmPm } from "./timeUtils";
 
 export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
   const data: ExtractedHourlyForecastInfo[] = [];
@@ -7,7 +8,7 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
     for (let index = 0; index < 5; index++) {
       data.push({
         temp: forecast.forecastday[0].hour[hour + index * 2].temp_f,
-        time: forecast.forecastday[0].hour[hour + index * 2].time,
+        time: convertToAmPm(forecast.forecastday[0].hour[hour + index * 2].time),
       });
     }
   } else {
@@ -15,12 +16,12 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
       if (hour + index * 2 < 23) {
         data.push({
           temp: forecast.forecastday[0].hour[(hour + index * 2) % 23].temp_f,
-          time: forecast.forecastday[0].hour[(hour + index * 2) % 23].time,
+          time: convertToAmPm(forecast.forecastday[0].hour[hour + index * 2].time),
         });
       } else {
         data.push({
           temp: forecast.forecastday[1].hour[(hour + index * 2) % 23].temp_f,
-          time: forecast.forecastday[1].hour[(hour + index * 2) % 23].time,
+          time: convertToAmPm(forecast.forecastday[1].hour[hour + index * 2].time),
         });
       }
     }

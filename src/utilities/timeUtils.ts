@@ -25,3 +25,12 @@ export const getTimeOfDayGradientClass = (timeOfDay: string): string => {
       return '';
   }
 };
+
+export function convertToAmPm(date: string) {
+
+  let hours = Number(date.substring(11, 13));
+  let period = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  return hours + ":00 " + period;
+}
