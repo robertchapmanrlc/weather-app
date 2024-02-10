@@ -19,6 +19,7 @@ interface ExtractedWeatherInfo {
   windSpeed: number;
   precipitation: number | null;
   weatherDescription: string | null;
+  icon: string;
 }
 
 interface ExtractedHourlyForecastInfo {

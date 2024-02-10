@@ -25,6 +25,6 @@ export async function GET(request: NextRequest) {
   }
 
   const weatherInfo = extractWeatherInfo(data);
-
+  
   return NextResponse.json(weatherInfo);
 }
