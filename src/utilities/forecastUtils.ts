@@ -76,7 +76,7 @@ function getForecastIcons(condition: string): string {
     return "Sun";
   }
 
-  if (condition.trim() == "Partly cloudy") {
+  if (condition.trim().toLowerCase() == "partly cloudy") {
     if (period == "night" || period == "evening") {
       return "Cloudy Night";
     } else {

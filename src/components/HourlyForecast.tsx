@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 
-import CloudyIcon from "../assets/Cloudy.svg";
 import { useWeatherContext } from "../context/weather-context";
 import { ExtractedHourlyForecastInfo } from "../types/weatherTypes";
 
@@ -31,11 +30,14 @@ export default async function HourlyForecast() {
             key={i}
             className="w-full md:h-10 flex flex-col md:flex-row items-center justify-between rounded-md"
           >
-            <h5 className="text-white text-lg">{forecast.temp} °F</h5>
-            <Image width={35} height={35} src={CloudyIcon} alt="Cloudy Icon" />
-            <h5 className="text-white/60 text-lg">
-              {forecast.time}
-            </h5>
+            <h5 className="text-white text-lg w-14">{forecast.temp} °F</h5>
+            <Image
+              width={35}
+              height={35}
+              src={`/${forecast.icon}.png`}
+              alt={`${forecast.icon} Icon`}
+            />
+            <h5 className="text-white/60 text-lg text-right w-20">{forecast.time}</h5>
           </div>
         ))}
       </div>
