@@ -34,44 +34,38 @@ export function extractWeatherInfo(apiResponse: OpenWeatherApiResponse) {
 }
 
 function getWeatherIcons(description: string): string {
-  switch (description) {
-    case "clear sky":
-      if (
-        calculateTimeOfDay() == "night" ||
-        calculateTimeOfDay() == "evening"
-      ) {
-        return "Moon";
-      }
-      return "Sun";
-    case "few clouds":
-      if (
-        calculateTimeOfDay() == "night" ||
-        calculateTimeOfDay() == "evening"
-      ) {
-        return "Cloudy Night";
-      }
-      return "Cloudy Day";
-    case "snow":
-      if (
-        calculateTimeOfDay() == "night" ||
-        calculateTimeOfDay() == "evening"
-      ) {
-        return "Snow Night";
-      }
-      return "Snow Day";
-    case "scattered clouds":
-      return "Cloudy";
-    case "broken clouds":
-      return "Cloudy";
-    case "shower rain":
-      return "Rain";
-    case "rain":
-      return "Rain";
-    case "thunderstorm":
-      return "Thunderstorm";
-    case "overcast clouds":
-      return "Cloudy";
-    default:
-      return "Mist";
+  const period = calculateTimeOfDay();
+  if (description.includes("thunderstorm")) {
+    return "Thunderstorm";
   }
+
+  if (description.includes("rain")) {
+    return "Rain";
+  }
+
+  if (description == "clear sky") {
+    if (period == "night" || period == "evening") {
+      return "Moon";
+    } else {
+      return "Sun";
+    }
+  }
+
+  if (description.includes("clouds")) {
+    if (period == "night" || period == "evening") {
+      return "Cloudy Night";
+    } else {
+      return "Cloudy Day";
+    }
+  }
+
+  if (description.includes("snow") || description.includes("sleet")) {
+    if (period == "night" || period == "evening") {
+      return "Snow Night";
+    } else {
+      return "Snow Day";
+    }
+  }
+
+  return "Mist";
 }

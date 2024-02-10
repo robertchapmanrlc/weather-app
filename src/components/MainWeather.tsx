@@ -2,9 +2,6 @@
 
 import Image from "next/image";
 
-import PrecipitationIcon from "./../assets/Precipitation.svg";
-import HumidityIcon from "./../assets/Humidity.svg";
-import WindSpeedIcon from "./../assets/Wind Speed.svg";
 import { useWeatherContext } from "../context/weather-context";
 
 export default async function MainWeather() {
