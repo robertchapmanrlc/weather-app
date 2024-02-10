@@ -25,7 +25,7 @@ export default async function DailyForecast() {
             key={i}
             className={`w-full ${i > 0 && "border-transparent"} border-2 px-2 md:w-32 h-36 md:h-28 flex md:flex-col items-center justify-between rounded-md`}
           >
-            <h5 className="w-full text-white/60 md:text-center text-lg">
+            <h5 className="w-24 md:w-full text-white/60 md:text-center text-lg">
               {forecast.date}
             </h5>
             <Image
@@ -34,7 +34,7 @@ export default async function DailyForecast() {
               src={`/${forecast.icon}.png`}
               alt={`${forecast.icon} Icon`}
             />
-            <div className="w-28 md:w-full flex justify-between">
+            <div className="w-24 md:w-full flex justify-between">
               <h5 className="text-white text-lg">{forecast.max_temp} °F</h5>
               <h5 className="text-white/60 text-lg">{forecast.min_temp} °F</h5>
             </div>
