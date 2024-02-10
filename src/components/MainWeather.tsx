@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 
-import SunIcon from "./../assets/Cloudy.png";
 import PrecipitationIcon from "./../assets/Precipitation.svg";
 import HumidityIcon from "./../assets/Humidity.svg";
 import WindSpeedIcon from "./../assets/Wind Speed.svg";
@@ -21,7 +20,12 @@ export default async function MainWeather() {
   return (
     <div className="w-full md:max-w-[450px] h-[400px] md:pt-5 bg-transparent md:bg-black/25 flex flex-col gap-y-6 items-center md:justify-start justify-center rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <h2 className="hidden md:block text-3xl text-white">Chicago, IL</h2>
-      <Image width={120} height={120} src={`/${data.icon}.png`} alt={`${data.icon} Icon`} />
+      <Image
+        width={120}
+        height={120}
+        src={`/${data.icon}.png`}
+        alt={`${data.icon} Icon`}
+      />
       <h1 className="font-bold text-5xl text-white">{data.temperature} °F</h1>
       <h4 className="md:hidden text-2xl text-white opacity-70">
         {data.weatherDescription}
@@ -32,26 +36,26 @@ export default async function MainWeather() {
             <Image
               width={20}
               height={20}
-              src={PrecipitationIcon}
+              src="/Precipitation.png"
               alt="Precipitation Icon"
             />
             <h5 className="font-light text-white">{data.precipitation}%</h5>
           </div>
         )}
-        <div className="flex flex-row gap-x-3">
+        <div className="flex flex-row items-center gap-x-3">
           <Image
             width={20}
             height={20}
-            src={HumidityIcon}
+            src="/Humidity.png"
             alt="Humidity Icon"
           />
           <h5 className="font-light text-white">{data.humidity}%</h5>
         </div>
-        <div className="flex flex-row gap-x-3">
+        <div className="flex items-center flex-row gap-x-3">
           <Image
             width={20}
             height={20}
-            src={WindSpeedIcon}
+            src="/Wind Speed.png"
             alt="Wind Speed Icon"
           />
           <h5 className="font-light text-white">{data.windSpeed}mph</h5>
