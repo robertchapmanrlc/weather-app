@@ -19,7 +19,7 @@ export default async function HourlyForecast() {
   const data: ExtractedHourlyForecastInfo[] = await res.json();
 
   return (
-    <div className="w-full md:max-w-[325px] h-52 md:h-[400px] px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
+    <div className="w-full md:max-w-[325px] h-52 md:h-[400px] px-4 md:px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <div className="w-full flex justify-between">
         <h2 className="text-white text-2xl font-bold">Today</h2>
         <h2 className="text-white text-2xl">{dateString}</h2>
@@ -28,11 +28,13 @@ export default async function HourlyForecast() {
         {data.map((forecast, i) => (
           <div
             key={i}
-            className={`w-20 md:w-full ${
+            className={`min-w-14 md:w-full ${
               i > 0 && "border-transparent"
             } border-2 px-2 py-2 md:h-10 flex flex-col md:flex-row items-center justify-between rounded-md`}
           >
-            <h5 className="text-white md:text-lg text-center md:text-left w-full md:w-14">{forecast.temp} °F</h5>
+            <h5 className="text-white text-lg text-center md:text-left w-full sm:w-14">
+              {forecast.temp} °F
+            </h5>
             <Image
               width={35}
               height={35}

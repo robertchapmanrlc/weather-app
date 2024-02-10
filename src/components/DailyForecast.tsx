@@ -17,7 +17,7 @@ export default async function DailyForecast() {
   const data: ExtractedDailyForecastInfo[] = await res.json();
 
   return (
-    <div className="w-full lg:max-w-[840px] h-[300px] md:h-[200px] px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
+    <div className="w-full lg:max-w-[840px] h-[300px] md:h-[200px] px-4 md:px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <h2 className="text-white text-2xl font-bold">Forecast</h2>
       <div className="w-full h-[85%] flex flex-col md:flex-row justify-between">
         {data.map((forecast, i) => (
