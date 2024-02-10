@@ -28,7 +28,9 @@ export default async function HourlyForecast() {
         {data.map((forecast, i) => (
           <div
             key={i}
-            className="w-full md:h-10 flex flex-col md:flex-row items-center justify-between rounded-md"
+            className={`w-full ${
+              i > 0 && "border-transparent"
+            } border-2 px-2 md:h-10 flex flex-col md:flex-row items-center justify-between rounded-md`}
           >
             <h5 className="text-white text-lg w-14">{forecast.temp} °F</h5>
             <Image
@@ -37,7 +39,9 @@ export default async function HourlyForecast() {
               src={`/${forecast.icon}.png`}
               alt={`${forecast.icon} Icon`}
             />
-            <h5 className="text-white/60 text-lg text-right w-20">{forecast.time}</h5>
+            <h5 className="text-white/60 text-lg text-right w-20">
+              {forecast.time}
+            </h5>
           </div>
         ))}
       </div>
