@@ -14,7 +14,7 @@ interface OpenWeatherApiResponse {
 }
 
 interface Condition {
-  text: Text;
+  text: string;
 }
 
 interface ExtractedWeatherInfo {
@@ -29,6 +29,7 @@ interface ExtractedWeatherInfo {
 interface ExtractedHourlyForecastInfo {
   time: string;
   temp: number;
+  icon: string;
 }
 
 interface ExtractedDailyForecastInfo {
