@@ -36,6 +36,7 @@ interface ExtractedDailyForecastInfo {
   date: string;
   max_temp: number;
   min_temp: number;
+  icon: string;
 }
 
 interface Forecast {

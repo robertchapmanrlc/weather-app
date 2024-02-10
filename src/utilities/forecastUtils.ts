@@ -63,6 +63,9 @@ export function extractDailyForecastInfo(forecast: Forecast) {
       ).toLocaleDateString(undefined, { weekday: "long" }),
       max_temp: Math.round(forecast.forecastday[index].day.maxtemp_f),
       min_temp: Math.round(forecast.forecastday[index].day.mintemp_f),
+      icon: getForecastIcons(
+        forecast.forecastday[index].day.condition.text
+      ),
     });
   }
 

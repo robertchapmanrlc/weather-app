@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 
-import SunIcon from "../assets/Sun.svg";
 import { useWeatherContext } from "../context/weather-context";
 import { ExtractedDailyForecastInfo } from "../types/weatherTypes";
 
@@ -26,7 +25,7 @@ export default async function DailyForecast() {
             <h5 className="w-28 text-white/60 md:text-center text-lg">
               {forecast.date}
             </h5>
-            <Image width={35} height={35} src={SunIcon} alt="Sun Icon" />
+            <Image width={35} height={35} src={`/${forecast.icon}.png`} alt={`${forecast.icon} Icon`} />
             <div className="w-28 md:w-24 flex justify-between">
               <h5 className="text-white text-lg">{forecast.max_temp} °F</h5>
               <h5 className="text-white/60 text-lg">{forecast.min_temp} °F</h5>
