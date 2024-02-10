@@ -13,6 +13,10 @@ interface OpenWeatherApiResponse {
   }[];
 }
 
+interface Condition {
+  text: Text;
+}
+
 interface ExtractedWeatherInfo {
   temperature: number;
   humidity: number;
@@ -44,12 +48,14 @@ interface Forecastday {
 }
 
 interface Hour {
+  condition: Condition;
   time: string;
   temp_c: number;
   temp_f: number;
 }
 
 interface Day {
+  condition: Condition;
   maxtemp_c: number;
   maxtemp_f: number;
   mintemp_c: number;
