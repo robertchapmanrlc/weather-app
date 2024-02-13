@@ -128,8 +128,6 @@ function getHourlyForecastIcons(condition: string, hour: number): string {
 }
 
 function getDailyForecastIcons(condition: string): string {
-  console.log(condition);
-
   if (
     condition.trim().toLowerCase() == "sunny" ||
     condition.trim().toLowerCase() == "clear"

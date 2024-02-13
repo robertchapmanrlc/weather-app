@@ -64,4 +64,10 @@ interface Day {
   mintemp_f: number;
 }
 
-export type { OpenWeatherApiResponse, ExtractedWeatherInfo, Forecast, ExtractedHourlyForecastInfo, ExtractedDailyForecastInfo };
+interface OpenWeatherGeolocationAPIResponse {
+  lat: number;
+  lon: number;
+}
+
+
+export type { OpenWeatherApiResponse, ExtractedWeatherInfo, Forecast, ExtractedHourlyForecastInfo, ExtractedDailyForecastInfo, OpenWeatherGeolocationAPIResponse };

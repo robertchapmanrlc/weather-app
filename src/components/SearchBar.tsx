@@ -2,12 +2,35 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type SearchInputs = {
+  location: string;
+};
 
 export default function SearchBar() {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
+  const { register, handleSubmit } = useForm<SearchInputs>();
+
+  const onSubmit: SubmitHandler<SearchInputs> = async (inputs: SearchInputs) => {
+
+    const inputBody = {
+      location: inputs.location
+    };
+
+    const res = await fetch("http://localhost:3000/api/location", {
+      method: 'POST',
+      cache: "no-cache",
+      body: JSON.stringify(inputBody),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
   return (
-    <div
+    <form
+      onSubmit={handleSubmit(onSubmit)}
       className={`w-full hidden md:flex items-center lg:max-w-[400px] md:max-w-[500px] h-10 px-4 bg-black ${
         !isFocused ? "bg-opacity-25" : "bg-opacity-75"
       } flex rounded-md transition-bg duration-300`}
@@ -22,6 +45,7 @@ export default function SearchBar() {
         } transition-opacity duration-300`}
       />
       <input
+        {...register("location", { required: true })}
         type="text"
         placeholder="Enter Location"
         aria-label="Search for a location"
@@ -29,6 +53,6 @@ export default function SearchBar() {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-    </div>
+    </form>
   );
 }
