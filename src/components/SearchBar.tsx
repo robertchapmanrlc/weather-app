@@ -13,8 +13,19 @@ export default function SearchBar() {
 
   const { register, handleSubmit } = useForm<SearchInputs>();
 
-  const onSubmit: SubmitHandler<SearchInputs> = (data: SearchInputs) => {
-    console.log(data.location);
+  const onSubmit: SubmitHandler<SearchInputs> = async (inputs: SearchInputs) => {
+
+    const inputBody = {
+      location: inputs.location
+    };
+
+    const res = await fetch("http://localhost:3000/api/location", {
+      method: 'POST',
+      cache: "no-cache",
+      body: JSON.stringify(inputBody),
+    });
+    const data = await res.json();
+    console.log(data);
   };
 
   return (
