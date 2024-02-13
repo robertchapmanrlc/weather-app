@@ -2,12 +2,24 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type SearchInputs = {
+  location: string;
+};
 
 export default function SearchBar() {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
+  const { register, handleSubmit } = useForm<SearchInputs>();
+
+  const onSubmit: SubmitHandler<SearchInputs> = (data: SearchInputs) => {
+    console.log(data.location);
+  };
+
   return (
     <form
+      onSubmit={handleSubmit(onSubmit)}
       className={`w-full hidden md:flex items-center lg:max-w-[400px] md:max-w-[500px] h-10 px-4 bg-black ${
         !isFocused ? "bg-opacity-25" : "bg-opacity-75"
       } flex rounded-md transition-bg duration-300`}
@@ -22,6 +34,7 @@ export default function SearchBar() {
         } transition-opacity duration-300`}
       />
       <input
+        {...register("location", { required: true })}
         type="text"
         placeholder="Enter Location"
         aria-label="Search for a location"
