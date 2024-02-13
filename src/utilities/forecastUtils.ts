@@ -3,7 +3,7 @@ import {
   ExtractedHourlyForecastInfo,
   Forecast,
 } from "../types/weatherTypes";
-import { calculateTimeOfDay, convertToAmPm } from "./timeUtils";
+import { convertToAmPm, determineTimeOfDay } from "./timeUtils";
 
 export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
   const data: ExtractedHourlyForecastInfo[] = [];
@@ -15,8 +15,9 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
         time: convertToAmPm(
           forecast.forecastday[0].hour[hour + index * 2].time
         ),
-        icon: getForecastIcons(
-          forecast.forecastday[0].hour[hour + index * 2].condition.text
+        icon: getHourlyForecastIcons(
+          forecast.forecastday[0].hour[hour + index * 2].condition.text,
+          hour + index * 2
         ),
       });
     }
@@ -30,8 +31,9 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
           time: convertToAmPm(
             forecast.forecastday[0].hour[hour + index * 2].time
           ),
-          icon: getForecastIcons(
-            forecast.forecastday[0].hour[hour + index * 2].condition.text
+          icon: getHourlyForecastIcons(
+            forecast.forecastday[0].hour[hour + index * 2].condition.text,
+            hour + index * 2
           ),
         });
       } else {
@@ -42,8 +44,9 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
           time: convertToAmPm(
             forecast.forecastday[1].hour[hour + index * 2].time
           ),
-          icon: getForecastIcons(
-            forecast.forecastday[1].hour[hour + index * 2].condition.text
+          icon: getHourlyForecastIcons(
+            forecast.forecastday[1].hour[hour + index * 2].condition.text,
+            hour + index * 2
           ),
         });
       }
@@ -63,20 +66,26 @@ export function extractDailyForecastInfo(forecast: Forecast) {
       ).toLocaleDateString(undefined, { weekday: "long" }),
       max_temp: Math.round(forecast.forecastday[index].day.maxtemp_f),
       min_temp: Math.round(forecast.forecastday[index].day.mintemp_f),
-      icon: getForecastIcons(
-        forecast.forecastday[index].day.condition.text
-      ),
+      icon: getDailyForecastIcons(forecast.forecastday[index].day.condition.text),
     });
   }
 
   return info;
 }
 
-function getForecastIcons(condition: string): string {
-  const period = calculateTimeOfDay();
+function getHourlyForecastIcons(condition: string, hour: number): string {
+  const period = determineTimeOfDay(hour);
 
-  if (condition.trim() == "Sunny") {
+  if (condition.trim().toLowerCase() == "sunny") {
     return "Sun";
+  }
+
+  if (condition.trim().toLowerCase() == "clear") {
+    if (period == "night" || period == "evening") {
+      return "Moon";
+    } else {
+      return "Sun";
+    }
   }
 
   if (condition.trim().toLowerCase() == "partly cloudy") {
@@ -87,7 +96,10 @@ function getForecastIcons(condition: string): string {
     }
   }
 
-  if (condition.trim() == "Overcast" || condition.trim() == "Cloudy") {
+  if (
+    condition.trim().toLowerCase() == "overcast" ||
+    condition.trim().toLowerCase() == "cloudy"
+  ) {
     return "Cloudy";
   }
 
@@ -95,13 +107,54 @@ function getForecastIcons(condition: string): string {
     condition.includes("snow") ||
     condition.includes("sleet") ||
     condition.toLowerCase().includes("ice") ||
-    condition.trim() == "Blizzard"
+    condition.trim().toLowerCase() == "blizzard"
   ) {
     if (period == "night" || period == "evening") {
       return "Snow Night";
     } else {
       return "Snow Day";
     }
+  }
+
+  if (condition.toLowerCase().includes("thunder")) {
+    return "Thunderstorm";
+  }
+
+  if (condition.includes("rain") || condition.includes("drizzle")) {
+    return "Rain";
+  }
+
+  return "Mist";
+}
+
+function getDailyForecastIcons(condition: string): string {
+  console.log(condition);
+
+  if (
+    condition.trim().toLowerCase() == "sunny" ||
+    condition.trim().toLowerCase() == "clear"
+  ) {
+    return "Sun";
+  }
+
+  if (condition.trim().toLowerCase() == "partly cloudy") {
+    return "Cloudy Day";
+  }
+
+  if (
+    condition.trim().toLowerCase() == "overcast" ||
+    condition.trim().toLowerCase() == "cloudy"
+  ) {
+    return "Cloudy";
+  }
+
+  if (
+    condition.includes("snow") ||
+    condition.includes("sleet") ||
+    condition.toLowerCase().includes("ice") ||
+    condition.trim().toLowerCase() == "blizzard"
+  ) {
+    return "Snow Day";
   }
 
   if (condition.toLowerCase().includes("thunder")) {

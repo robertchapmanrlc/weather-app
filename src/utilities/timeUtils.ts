@@ -11,6 +11,18 @@ export const calculateTimeOfDay = (): string => {
   }
 };
 
+export const determineTimeOfDay = (hour: number): string => {
+  if (hour >= 5 && hour < 12) {
+    return "morning";
+  } else if (hour >= 12 && hour < 18) {
+    return "afternoon";
+  } else if (hour >= 18 && hour < 21) {
+    return "evening";
+  } else {
+    return "night";
+  }
+}
+
 export const getTimeOfDayGradientClass = (timeOfDay: string): string => {
   switch (timeOfDay) {
     case "morning":
