@@ -7,7 +7,7 @@ export default function SearchBar() {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   return (
-    <div
+    <form
       className={`w-full hidden md:flex items-center lg:max-w-[400px] md:max-w-[500px] h-10 px-4 bg-black ${
         !isFocused ? "bg-opacity-25" : "bg-opacity-75"
       } flex rounded-md transition-bg duration-300`}
@@ -29,6 +29,6 @@ export default function SearchBar() {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-    </div>
+    </form>
   );
 }
