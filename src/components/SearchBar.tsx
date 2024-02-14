@@ -4,28 +4,36 @@ import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import { useWeatherContext } from "../context/weather-context";
+
 type SearchInputs = {
   location: string;
 };
 
 export default function SearchBar() {
+  const { setLocation } = useWeatherContext();
+
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const { register, handleSubmit } = useForm<SearchInputs>();
 
-  const onSubmit: SubmitHandler<SearchInputs> = async (inputs: SearchInputs) => {
-
-    const inputBody = {
-      location: inputs.location
-    };
-
-    const res = await fetch("http://localhost:3000/api/location", {
-      method: 'POST',
-      cache: "no-cache",
-      body: JSON.stringify(inputBody),
-    });
-    const data = await res.json();
-    console.log(data);
+  const onSubmit: SubmitHandler<SearchInputs> = async (
+    inputs: SearchInputs
+  ) => {
+    try {
+      const inputBody = {
+        location: inputs.location,
+      };
+  
+      const res = await fetch("http://localhost:3000/api/location", {
+        method: "POST",
+        cache: "no-cache",
+        body: JSON.stringify(inputBody),
+      });
+      const data = await res.json();
+      console.log(data);
+      setLocation(data);
+    } catch (error) {}
   };
 
   return (

@@ -1,20 +1,11 @@
-"use client"
 
 import Image from "next/image";
 
-import { useWeatherContext } from "../context/weather-context";
 import { ExtractedDailyForecastInfo } from "../types/weatherTypes";
 
 export default async function DailyForecast() {
 
-  const { location } = useWeatherContext();
-
-  const res = await fetch(
-    `http://localhost:3000/api/forecast/daily?lat=${location.latitude}&lon=${location.longitude}`,
-    { cache: "no-store" }
-  );
-
-  const data: ExtractedDailyForecastInfo[] = await res.json();
+  const data: ExtractedDailyForecastInfo[] = [];
 
   return (
     <div className="w-full lg:max-w-[840px] h-[300px] md:h-[200px] px-4 md:px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
