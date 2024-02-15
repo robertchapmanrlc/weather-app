@@ -3,7 +3,7 @@ import HourlyForecast from "../components/HourlyForecast";
 import MainWeather from "../components/MainWeather";
 import MobileSearchBar from "../components/MobileSearchBar";
 import SearchBar from "../components/SearchBar";
-import { ExtractedHourlyForecastInfo, ExtractedWeatherInfo, LocationCoords } from "../types/weatherTypes";
+import { ExtractedDailyForecastInfo, ExtractedHourlyForecastInfo, ExtractedWeatherInfo, LocationCoords } from "../types/weatherTypes";
 
 export default async function Main() {
 
@@ -22,6 +22,10 @@ export default async function Main() {
 
   const hourlyForecastData: ExtractedHourlyForecastInfo[] = await hourlyForecastRes.json();
 
+  const dailyForecastRes = await fetch(`http://localhost:3000/api/forecast/daily?lat=${location.latitude}&lon=${location.longitude}`);
+
+  const dailyForecastData: ExtractedDailyForecastInfo[] = await dailyForecastRes.json();
+
   return (
     <main className="w-full flex flex-col py-[40px] px-7 md:px-14 justify-start items-center gap-y-10">
       <SearchBar />
@@ -30,7 +34,7 @@ export default async function Main() {
         <MainWeather weatherData={weatherData} />
         <HourlyForecast forecastData={hourlyForecastData}/>
       </div>
-      <DailyForecast />
+      <DailyForecast forecastData={dailyForecastData} />
     </main>
   );
 }

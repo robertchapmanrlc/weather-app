@@ -8,7 +8,6 @@ interface HourlyForecastProps {
 }
 
 export default async function HourlyForecast({ forecastData }: HourlyForecastProps) {
-  // const { location } = useWeatherContext();
   const date = new Date();
   const dateString = date.toString().substring(4, 7) + ", " + date.getDate();
 
