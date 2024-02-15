@@ -69,5 +69,9 @@ interface OpenWeatherGeolocationAPIResponse {
   lon: number;
 }
 
+interface LocationCoords {
+  latitude: number;
+  longitude: number;
+}
 
-export type { OpenWeatherApiResponse, ExtractedWeatherInfo, Forecast, ExtractedHourlyForecastInfo, ExtractedDailyForecastInfo, OpenWeatherGeolocationAPIResponse };
+export type { LocationCoords, OpenWeatherApiResponse, ExtractedWeatherInfo, Forecast, ExtractedHourlyForecastInfo, ExtractedDailyForecastInfo, OpenWeatherGeolocationAPIResponse };

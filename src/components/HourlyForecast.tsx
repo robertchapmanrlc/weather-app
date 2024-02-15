@@ -1,22 +1,15 @@
-"use client";
 
 import Image from "next/image";
 
-import { useWeatherContext } from "../context/weather-context";
 import { ExtractedHourlyForecastInfo } from "../types/weatherTypes";
 
-export default async function HourlyForecast() {
-  const { location } = useWeatherContext();
+interface HourlyForecastProps {
+  forecastData: ExtractedHourlyForecastInfo[];
+}
+
+export default async function HourlyForecast({ forecastData }: HourlyForecastProps) {
   const date = new Date();
   const dateString = date.toString().substring(4, 7) + ", " + date.getDate();
-  const time = date.getHours();
-
-  const res = await fetch(
-    `http://localhost:3000/api/forecast/hourly?lat=${location.latitude}&lon=${location.longitude}&time=${time}`,
-    { cache: "no-store" }
-  );
-
-  const data: ExtractedHourlyForecastInfo[] = await res.json();
 
   return (
     <div className="w-full md:max-w-[325px] h-52 md:h-[400px] px-4 md:px-7 py-5 flex flex-col justify-between gap-y-5 bg-black/25 rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
@@ -25,7 +18,7 @@ export default async function HourlyForecast() {
         <h2 className="text-white text-2xl">{dateString}</h2>
       </div>
       <div className="w-full h-[85%] flex flex-row md:flex-col justify-between">
-        {data.map((forecast, i) => (
+        {forecastData.map((forecast, i) => (
           <div
             key={i}
             className={`min-w-14 md:w-full ${

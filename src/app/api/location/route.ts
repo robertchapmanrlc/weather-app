@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
   const data: OpenWeatherGeolocationAPIResponse[] = await res.json();
 
   const coordinates = {
-    lat: data[0].lat,
-    lon: data[0].lon
+    latitude: data[0].lat,
+    longitude: data[0].lon
   }
 
   return NextResponse.json(coordinates);
