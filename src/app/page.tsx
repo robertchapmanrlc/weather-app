@@ -1,10 +1,22 @@
+"use client";
+
+import { useState } from "react";
 import DailyForecast from "../components/DailyForecast";
 import HourlyForecast from "../components/HourlyForecast";
 import MainWeather from "../components/MainWeather";
 import MobileSearchBar from "../components/MobileSearchBar";
 import SearchBar from "../components/SearchBar";
+import { LocationCoords } from "../types/weatherTypes";
 
 export default function Main() {
+
+  const [location, setLocation] = useState<LocationCoords>({
+    latitude: 0,
+    longitude: 0,
+  });
+
+  console.log(location);
+
   return (
     <main className="w-full flex flex-col py-[40px] px-7 md:px-14 justify-start items-center gap-y-10">
       <SearchBar />
