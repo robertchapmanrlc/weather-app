@@ -3,7 +3,7 @@ import HourlyForecast from "../components/HourlyForecast";
 import MainWeather from "../components/MainWeather";
 import MobileSearchBar from "../components/MobileSearchBar";
 import SearchBar from "../components/SearchBar";
-import { ExtractedDailyForecastInfo, ExtractedHourlyForecastInfo, ExtractedWeatherInfo, LocationCoords } from "../types/weatherTypes";
+import { ExtractedDailyForecastInfo, ExtractedHourlyForecastInfo, ExtractedWeatherInfo } from "../types/weatherTypes";
 
 export default async function Main() {
 
