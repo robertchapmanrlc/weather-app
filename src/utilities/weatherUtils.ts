@@ -1,32 +1,25 @@
-import {
-  OpenWeatherApiResponse,
-  ExtractedWeatherInfo,
-} from "../types/weatherTypes";
+import { ExtractedWeatherInfo, WeatherAPIResponse } from "../types/weatherTypes";
 import { calculateTimeOfDay } from "./timeUtils";
 
-export function extractWeatherInfo(apiResponse: OpenWeatherApiResponse) {
-  if (!apiResponse || apiResponse.cod !== 200) {
-    throw new Error("Invalid API Response");
-  }
+export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number) {
+  const { current, forecast } = apiResponse;
 
-  const {
-    main: { temp, humidity },
-    wind: { speed },
-    weather,
-    rain,
-  } = apiResponse;
+  const precipitation =
+    (forecast.forecastday[0].hour[time].will_it_rain &&
+      forecast.forecastday[0].hour[time].chance_of_rain) ||
+    (forecast.forecastday[0].hour[time].will_it_snow &&
+      forecast.forecastday[0].hour[time].chance_of_snow);
 
-  const mainWeather = weather && weather.length > 0 ? weather[0] : null;
-  const weatherDescription = mainWeather ? mainWeather.description : null;
-  const precipitation = rain ? rain["1h"] : null;
-  const icon = getWeatherIcons(weatherDescription!);
+  const icon = getWeatherIcons(current.condition.text);
 
   const extractedInfo: ExtractedWeatherInfo = {
-    temperature: Math.round(temp),
-    humidity,
-    windSpeed: Math.round(speed),
-    precipitation,
-    weatherDescription,
+    temperatureF: Math.round(current.temp_f),
+    temperatureC: Math.round(current.temp_c),
+    weatherDescription: current.condition.text,
+    humidity: current.humidity,
+    windSpeedMph: current.wind_mph,
+    windSpeedKmh: current.wind_kph,
+    precipitation: precipitation,
     icon: icon,
   };
 

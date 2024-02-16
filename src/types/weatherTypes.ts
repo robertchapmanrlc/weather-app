@@ -1,17 +1,20 @@
+interface WeatherAPIResponse {
+  location: Location;
+  current: Current;
+  forecast: Forecast;
+}
+
 interface Forecast {
   forecastday: Forecastday[];
-  current: Current;
 }
 
 interface Current {
-  tempC: number;
-  tempF: number;
-  isDay: number;
+  temp_c: number;
+  temp_f: number;
+  is_day: number;
   condition: Condition;
-  windMph: number;
-  windKph: number;
-  precipMm: number;
-  precipIn: number;
+  wind_mph: number;
+  wind_kph: number;
   humidity: number;
 }
 
@@ -26,6 +29,10 @@ interface Hour {
   time: string;
   temp_c: number;
   temp_f: number;
+  will_it_rain: number;
+  chance_of_rain: number;
+  will_it_snow: number;
+  chance_of_snow: number;
 }
 
 interface Day {
@@ -41,11 +48,13 @@ interface Condition {
 }
 
 interface ExtractedWeatherInfo {
-  temperature: number;
+  temperatureF: number;
+  temperatureC: number;
   humidity: number;
-  windSpeed: number;
-  precipitation: number | null;
-  weatherDescription: string | null;
+  windSpeedMph: number;
+  windSpeedKmh: number;
+  precipitation: number;
+  weatherDescription: string;
   icon: string;
 }
 
@@ -64,7 +73,7 @@ interface ExtractedDailyForecastInfo {
 
 export type {
   ExtractedWeatherInfo,
-  Forecast,
+  WeatherAPIResponse,
   ExtractedHourlyForecastInfo,
   ExtractedDailyForecastInfo,
 };
