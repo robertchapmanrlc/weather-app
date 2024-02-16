@@ -1,7 +1,7 @@
 import { ExtractedWeatherInfo, WeatherAPIResponse } from "../types/weatherTypes";
 
 export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number) {
-  const { current, forecast } = apiResponse;
+  const { location, current, forecast } = apiResponse;
 
   const precipitation =
     (forecast.forecastday[0].hour[time].will_it_rain &&
@@ -12,6 +12,7 @@ export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number
   const icon = getWeatherIcons(current.condition.text, current.is_day);
 
   const extractedInfo: ExtractedWeatherInfo = {
+    name: location.name,
     temperatureF: Math.round(current.temp_f),
     temperatureC: Math.round(current.temp_c),
     weatherDescription: current.condition.text,

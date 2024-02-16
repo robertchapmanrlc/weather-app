@@ -4,6 +4,10 @@ interface WeatherAPIResponse {
   forecast: Forecast;
 }
 
+interface Location {
+  name: string;
+}
+
 interface Forecast {
   forecastday: Forecastday[];
 }
@@ -48,6 +52,7 @@ interface Condition {
 }
 
 interface ExtractedWeatherInfo {
+  name: string;
   temperatureF: number;
   temperatureC: number;
   humidity: number;
