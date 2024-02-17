@@ -62,6 +62,7 @@ interface ExtractedWeatherInfo {
   weatherDescription: string;
   icon: string;
   hourlyForecast: ExtractedHourlyForecastInfo[];
+  dailyForecast: ExtractedDailyForecastInfo[];
 }
 
 interface ExtractedHourlyForecastInfo {
