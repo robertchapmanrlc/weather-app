@@ -28,7 +28,7 @@ export default async function Main() {
         <MainWeather weatherData={weatherData} />
         <HourlyForecast forecastData={weatherData.hourlyForecast}/>
       </div>
-      {/* <DailyForecast forecastData={dailyForecastData} /> */}
+      <DailyForecast forecastData={weatherData.dailyForecast} />
     </main>
   );
 }
