@@ -1,4 +1,5 @@
-import { ExtractedWeatherInfo, WeatherAPIResponse } from "../types/weatherTypes";
+import { ExtractedHourlyForecastInfo, ExtractedWeatherInfo, WeatherAPIResponse } from "../types/weatherTypes";
+import { extractHourlyForecastInfo } from "./forecastUtils";
 
 export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number) {
   const { location, current, forecast } = apiResponse;
@@ -11,6 +12,8 @@ export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number
 
   const icon = getWeatherIcons(current.condition.text, current.is_day);
 
+  const hourlyForecasts: ExtractedHourlyForecastInfo[] = extractHourlyForecastInfo(apiResponse.forecast, time);
+
   const extractedInfo: ExtractedWeatherInfo = {
     name: location.name,
     temperatureF: Math.round(current.temp_f),
@@ -21,6 +24,7 @@ export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number
     windSpeedKmh: current.wind_kph,
     precipitation: precipitation,
     icon: icon,
+    hourlyForecast: hourlyForecasts
   };
 
   return extractedInfo;

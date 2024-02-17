@@ -61,6 +61,7 @@ interface ExtractedWeatherInfo {
   precipitation: number;
   weatherDescription: string;
   icon: string;
+  hourlyForecast: ExtractedHourlyForecastInfo[];
 }
 
 interface ExtractedHourlyForecastInfo {
@@ -77,6 +78,7 @@ interface ExtractedDailyForecastInfo {
 }
 
 export type {
+  Forecast,
   ExtractedWeatherInfo,
   WeatherAPIResponse,
   ExtractedHourlyForecastInfo,
