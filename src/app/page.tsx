@@ -26,7 +26,7 @@ export default async function Main() {
       {/* <MobileSearchBar /> */}
       <div className="w-full flex flex-col md:flex-row-reverse justify-center items-center md:gap-x-8 lg:gap-x-16">
         <MainWeather weatherData={weatherData} />
-        {/* <HourlyForecast forecastData={hourlyForecastData}/> */}
+        <HourlyForecast forecastData={weatherData.hourlyForecast}/>
       </div>
       {/* <DailyForecast forecastData={dailyForecastData} /> */}
     </main>
