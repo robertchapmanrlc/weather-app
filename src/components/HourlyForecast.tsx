@@ -7,7 +7,7 @@ interface HourlyForecastProps {
   forecastData: ExtractedHourlyForecastInfo[];
 }
 
-export default async function HourlyForecast({ forecastData }: HourlyForecastProps) {
+export default function HourlyForecast({ forecastData }: HourlyForecastProps) {
   const date = new Date();
   const dateString = date.toString().substring(4, 7) + ", " + date.getDate();
 
