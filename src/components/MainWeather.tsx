@@ -22,7 +22,7 @@ export default function MainWeather({ weatherData }: MainWeatherProps) {
             src="/Precipitation.png"
             alt="Precipitation Icon"
           />
-          <h5 className="font-light text-white">{weatherData.precipitation ? weatherData.precipitation : 0}%</h5>
+          <h5 className="font-light text-white">{weatherData.precipitation}%</h5>
         </div>
         <div className="flex flex-row items-center gap-x-3">
           <Image

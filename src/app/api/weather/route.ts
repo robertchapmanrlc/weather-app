@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const time = Number(query.get("time"));
 
   const res = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=${location}&days=1&aqi=no&alerts=no`
+    `https://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=${location}&days=5&aqi=no&alerts=no`
   );
 
   if (!res.ok) {

@@ -1,34 +1,48 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import DailyForecast from "../components/DailyForecast";
 import HourlyForecast from "../components/HourlyForecast";
 import MainWeather from "../components/MainWeather";
 import MobileSearchBar from "../components/MobileSearchBar";
 import SearchBar from "../components/SearchBar";
-import {
-  ExtractedDailyForecastInfo,
-  ExtractedHourlyForecastInfo,
-  ExtractedWeatherInfo,
-} from "../types/weatherTypes";
+import { ExtractedWeatherInfo } from "../types/weatherTypes";
 
-export default async function Main() {
-  const location: string = "Chicago, IL";
+export default function Main() {
+  const [location, setLocation] = useState("Chicago, IL");
+  const [weatherData, setWeatherData] = useState<
+    ExtractedWeatherInfo | undefined
+  >();
   const time: number = new Date().getHours();
 
-  const weatherRes = await fetch(
-    `http://localhost:3000/api/weather?location=${location}&time=${time}`,
-    { cache: "no-cache" }
-  );
+  const newLocation = (location: string) => {
+    setLocation(location);
+  };
 
-  const weatherData: ExtractedWeatherInfo = await weatherRes.json();
+  useEffect(() => {
+    fetch(
+      `http://localhost:3000/api/weather?location=${location}&time=${time}`,
+      { cache: "no-cache" }
+    )
+      .then((res) => res.json())
+      .then((weatherData) => setWeatherData(weatherData));
+  }, [location]);
 
   return (
     <main className="w-full flex flex-col py-[40px] px-7 md:px-14 justify-start items-center gap-y-10">
-      {/* <SearchBar /> */}
-      {/* <MobileSearchBar /> */}
-      <div className="w-full flex flex-col md:flex-row-reverse justify-center items-center md:gap-x-8 lg:gap-x-16">
-        <MainWeather weatherData={weatherData} />
-        {/* <HourlyForecast forecastData={hourlyForecastData}/> */}
-      </div>
-      {/* <DailyForecast forecastData={dailyForecastData} /> */}
+      <SearchBar newLocation={newLocation} />
+      <MobileSearchBar newLocation={newLocation} />
+      {weatherData ? (
+        <>
+          <div className="w-full flex flex-col md:flex-row-reverse justify-center items-center md:gap-x-8 lg:gap-x-16">
+            <MainWeather weatherData={weatherData} />
+            <HourlyForecast forecastData={weatherData.hourlyForecast} />
+          </div>
+          <DailyForecast forecastData={weatherData.dailyForecast} />
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
     </main>
   );
 }
