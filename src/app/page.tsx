@@ -21,7 +21,7 @@ export default function Main() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:3000/api/weather?location=${location}&time=${time}`,
+      `/api/weather?location=${location}&time=${time}`,
       { cache: "no-cache" }
     )
       .then((res) => res.json())
