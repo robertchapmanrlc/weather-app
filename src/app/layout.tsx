@@ -3,7 +3,7 @@ import "./globals.css";
 import {
   calculateTimeOfDay,
   getTimeOfDayGradientClass,
-} from "../utilities/timeUtils";
+} from "@/utilities/timeUtils";
 import WeatherContextProvider from "../context/weather-context";
 
 export const metadata = {

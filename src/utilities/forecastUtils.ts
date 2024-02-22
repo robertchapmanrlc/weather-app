@@ -3,7 +3,7 @@ import {
   ExtractedHourlyForecastInfo,
   Forecast,
 } from "@/types/weatherTypes";
-import { convertToAmPm, determineTimeOfDay } from "./timeUtils";
+import { convertToAmPm, determineTimeOfDay } from "@/utilities/timeUtils";
 
 export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
   const data: ExtractedHourlyForecastInfo[] = [];

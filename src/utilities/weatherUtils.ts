@@ -7,7 +7,7 @@ import {
 import {
   extractDailyForecastInfo,
   extractHourlyForecastInfo,
-} from "./forecastUtils";
+} from "@/utilities/forecastUtils";
 
 export function extractWeatherInfo(
   apiResponse: WeatherAPIResponse,
