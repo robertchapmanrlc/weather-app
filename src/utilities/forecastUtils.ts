@@ -2,8 +2,8 @@ import {
   ExtractedDailyForecastInfo,
   ExtractedHourlyForecastInfo,
   Forecast,
-} from "../types/weatherTypes";
-import { convertToAmPm, determineTimeOfDay } from "./timeUtils";
+} from "@/types/weatherTypes";
+import { convertToAmPm, determineTimeOfDay } from "@/utilities/timeUtils";
 
 export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
   const data: ExtractedHourlyForecastInfo[] = [];
@@ -59,14 +59,16 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
 export function extractDailyForecastInfo(forecast: Forecast) {
   const info: ExtractedDailyForecastInfo[] = [];
 
-  for (let index = 0; index < 5; index++) {
+  for (let index = 0; index < 3; index++) {
     info.push({
       date: new Date(
         forecast.forecastday[index].date.toString() + "T00:00:00"
       ).toLocaleDateString(undefined, { weekday: "long" }),
       max_temp: Math.round(forecast.forecastday[index].day.maxtemp_f),
       min_temp: Math.round(forecast.forecastday[index].day.mintemp_f),
-      icon: getDailyForecastIcons(forecast.forecastday[index].day.condition.text),
+      icon: getDailyForecastIcons(
+        forecast.forecastday[index].day.condition.text
+      ),
     });
   }
 

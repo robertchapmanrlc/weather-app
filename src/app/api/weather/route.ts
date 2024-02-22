@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { extractWeatherInfo } from "../../../utilities/weatherUtils";
+import { extractWeatherInfo } from "@/utilities/weatherUtils";
 
 export async function GET(request: NextRequest) {
   const query = request.nextUrl.searchParams;
