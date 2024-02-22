@@ -1,7 +1,6 @@
-
 import Image from "next/image";
 
-import { ExtractedHourlyForecastInfo } from "../types/weatherTypes";
+import { ExtractedHourlyForecastInfo } from "@/types/weatherTypes";
 
 interface HourlyForecastProps {
   forecastData: ExtractedHourlyForecastInfo[];
