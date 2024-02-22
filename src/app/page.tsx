@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import DailyForecast from "../components/DailyForecast";
-import HourlyForecast from "../components/HourlyForecast";
-import MainWeather from "../components/MainWeather";
-import MobileSearchBar from "../components/MobileSearchBar";
-import SearchBar from "../components/SearchBar";
+import DailyForecast from "@/components/DailyForecast";
+import HourlyForecast from "@/components/HourlyForecast";
+import MainWeather from "@/components/MainWeather";
+import MobileSearchBar from "@/components/MobileSearchBar";
+import SearchBar from "@/components/SearchBar";
 import { ExtractedWeatherInfo } from "../types/weatherTypes";
 
 export default function Main() {
