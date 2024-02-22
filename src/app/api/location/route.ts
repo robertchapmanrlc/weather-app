@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { OpenWeatherGeolocationAPIResponse } from "../../../types/weatherTypes";
+import { OpenWeatherGeolocationAPIResponse } from "../../@/types/weatherTypes";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -17,8 +17,8 @@ export async function POST(request: NextRequest) {
 
   const coordinates = {
     latitude: data[0].lat,
-    longitude: data[0].lon
-  }
+    longitude: data[0].lon,
+  };
 
   return NextResponse.json(coordinates);
 }

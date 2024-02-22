@@ -2,7 +2,7 @@ import {
   ExtractedDailyForecastInfo,
   ExtractedHourlyForecastInfo,
   Forecast,
-} from "../types/weatherTypes";
+} from "@/types/weatherTypes";
 import { convertToAmPm, determineTimeOfDay } from "./timeUtils";
 
 export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
@@ -66,7 +66,9 @@ export function extractDailyForecastInfo(forecast: Forecast) {
       ).toLocaleDateString(undefined, { weekday: "long" }),
       max_temp: Math.round(forecast.forecastday[index].day.maxtemp_f),
       min_temp: Math.round(forecast.forecastday[index].day.mintemp_f),
-      icon: getDailyForecastIcons(forecast.forecastday[index].day.condition.text),
+      icon: getDailyForecastIcons(
+        forecast.forecastday[index].day.condition.text
+      ),
     });
   }
 

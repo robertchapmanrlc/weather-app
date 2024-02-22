@@ -6,7 +6,7 @@ import HourlyForecast from "@/components/HourlyForecast";
 import MainWeather from "@/components/MainWeather";
 import MobileSearchBar from "@/components/MobileSearchBar";
 import SearchBar from "@/components/SearchBar";
-import { ExtractedWeatherInfo } from "../types/weatherTypes";
+import { ExtractedWeatherInfo } from "@/types/weatherTypes";
 
 export default function Main() {
   const [location, setLocation] = useState("Chicago, IL");
@@ -20,10 +20,9 @@ export default function Main() {
   };
 
   useEffect(() => {
-    fetch(
-      `/api/weather?location=${location}&time=${time}`,
-      { cache: "no-cache" }
-    )
+    fetch(`/api/weather?location=${location}&time=${time}`, {
+      cache: "no-cache",
+    })
       .then((res) => res.json())
       .then((weatherData) => setWeatherData(weatherData));
   }, [location]);

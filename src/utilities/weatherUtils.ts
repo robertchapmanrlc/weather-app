@@ -1,7 +1,18 @@
-import { ExtractedDailyForecastInfo, ExtractedHourlyForecastInfo, ExtractedWeatherInfo, WeatherAPIResponse } from "../types/weatherTypes";
-import { extractDailyForecastInfo, extractHourlyForecastInfo } from "./forecastUtils";
+import {
+  ExtractedDailyForecastInfo,
+  ExtractedHourlyForecastInfo,
+  ExtractedWeatherInfo,
+  WeatherAPIResponse,
+} from "@/types/weatherTypes";
+import {
+  extractDailyForecastInfo,
+  extractHourlyForecastInfo,
+} from "./forecastUtils";
 
-export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number) {
+export function extractWeatherInfo(
+  apiResponse: WeatherAPIResponse,
+  time: number
+) {
   const { location, current, forecast } = apiResponse;
 
   const precipitation =
@@ -12,9 +23,12 @@ export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number
 
   const icon = getWeatherIcons(current.condition.text, current.is_day);
 
-  const hourlyForecasts: ExtractedHourlyForecastInfo[] = extractHourlyForecastInfo(apiResponse.forecast, time);
+  const hourlyForecasts: ExtractedHourlyForecastInfo[] =
+    extractHourlyForecastInfo(apiResponse.forecast, time);
 
-  const dailyForecasts: ExtractedDailyForecastInfo[] = extractDailyForecastInfo(apiResponse.forecast);
+  const dailyForecasts: ExtractedDailyForecastInfo[] = extractDailyForecastInfo(
+    apiResponse.forecast
+  );
 
   const extractedInfo: ExtractedWeatherInfo = {
     name: location.name,
@@ -27,7 +41,7 @@ export function extractWeatherInfo(apiResponse: WeatherAPIResponse, time: number
     precipitation: precipitation,
     icon: icon,
     hourlyForecast: hourlyForecasts,
-    dailyForecast: dailyForecasts
+    dailyForecast: dailyForecasts,
   };
 
   return extractedInfo;
