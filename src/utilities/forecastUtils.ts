@@ -59,7 +59,7 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
 export function extractDailyForecastInfo(forecast: Forecast) {
   const info: ExtractedDailyForecastInfo[] = [];
 
-  for (let index = 0; index < 5; index++) {
+  for (let index = 0; index < 3; index++) {
     info.push({
       date: new Date(
         forecast.forecastday[index].date.toString() + "T00:00:00"
