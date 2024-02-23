@@ -7,7 +7,7 @@ interface MainWeatherProps {
 
 export default function MainWeather({ weatherData }: MainWeatherProps) {
   return (
-    <div className="w-full md:max-w-[450px] h-[400px] md:pt-5 bg-transparent md:bg-black/25 flex flex-col gap-y-6 items-center md:justify-start justify-center rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
+    <div className="w-full md:max-w-[450px] h-[400px] bg-transparent md:bg-black/25 flex flex-col gap-y-6 items-center justify-center rounded-xl drop-shadow-[0_30px_10px_rgba(0,0,0,0.1)]">
       <h2 className="hidden md:block text-3xl text-white">
         {weatherData.name}
       </h2>
