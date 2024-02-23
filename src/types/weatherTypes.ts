@@ -1,16 +1,50 @@
-interface OpenWeatherApiResponse {
-  cod: number;
-  main: {
-    temp: number;
-    humidity: number;
-  };
-  wind: {
-    speed: number;
-  };
-  rain: { [key: string]: number };
-  weather: {
-    description: string;
-  }[];
+interface WeatherAPIResponse {
+  location: Location;
+  current: Current;
+  forecast: Forecast;
+}
+
+interface Location {
+  name: string;
+}
+
+interface Forecast {
+  forecastday: Forecastday[];
+}
+
+interface Current {
+  temp_c: number;
+  temp_f: number;
+  is_day: number;
+  condition: Condition;
+  wind_mph: number;
+  wind_kph: number;
+  humidity: number;
+}
+
+interface Forecastday {
+  date: Date;
+  day: Day;
+  hour: Hour[];
+}
+
+interface Hour {
+  condition: Condition;
+  time: string;
+  temp_c: number;
+  temp_f: number;
+  will_it_rain: number;
+  chance_of_rain: number;
+  will_it_snow: number;
+  chance_of_snow: number;
+}
+
+interface Day {
+  condition: Condition;
+  maxtemp_c: number;
+  maxtemp_f: number;
+  mintemp_c: number;
+  mintemp_f: number;
 }
 
 interface Condition {
@@ -18,12 +52,17 @@ interface Condition {
 }
 
 interface ExtractedWeatherInfo {
-  temperature: number;
+  name: string;
+  temperatureF: number;
+  temperatureC: number;
   humidity: number;
-  windSpeed: number;
-  precipitation: number | null;
-  weatherDescription: string | null;
+  windSpeedMph: number;
+  windSpeedKmh: number;
+  precipitation: number;
+  weatherDescription: string;
   icon: string;
+  hourlyForecast: ExtractedHourlyForecastInfo[];
+  dailyForecast: ExtractedDailyForecastInfo[];
 }
 
 interface ExtractedHourlyForecastInfo {
@@ -39,29 +78,10 @@ interface ExtractedDailyForecastInfo {
   icon: string;
 }
 
-interface Forecast {
-  forecastday: Forecastday[];
-}
-
-interface Forecastday {
-  date: Date;
-  day: Day;
-  hour: Hour[];
-}
-
-interface Hour {
-  condition: Condition;
-  time: string;
-  temp_c: number;
-  temp_f: number;
-}
-
-interface Day {
-  condition: Condition;
-  maxtemp_c: number;
-  maxtemp_f: number;
-  mintemp_c: number;
-  mintemp_f: number;
-}
-
-export type { OpenWeatherApiResponse, ExtractedWeatherInfo, Forecast, ExtractedHourlyForecastInfo, ExtractedDailyForecastInfo };
+export type {
+  Forecast,
+  ExtractedWeatherInfo,
+  WeatherAPIResponse,
+  ExtractedHourlyForecastInfo,
+  ExtractedDailyForecastInfo,
+};

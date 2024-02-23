@@ -1,70 +1,99 @@
 import {
-  OpenWeatherApiResponse,
+  ExtractedDailyForecastInfo,
+  ExtractedHourlyForecastInfo,
   ExtractedWeatherInfo,
-} from "../types/weatherTypes";
-import { calculateTimeOfDay } from "./timeUtils";
+  WeatherAPIResponse,
+} from "@/types/weatherTypes";
+import {
+  extractDailyForecastInfo,
+  extractHourlyForecastInfo,
+} from "@/utilities/forecastUtils";
 
-export function extractWeatherInfo(apiResponse: OpenWeatherApiResponse) {
-  if (!apiResponse || apiResponse.cod !== 200) {
-    throw new Error("Invalid API Response");
-  }
+export function extractWeatherInfo(
+  apiResponse: WeatherAPIResponse,
+  time: number
+) {
+  const { location, current, forecast } = apiResponse;
 
-  const {
-    main: { temp, humidity },
-    wind: { speed },
-    weather,
-    rain,
-  } = apiResponse;
+  const precipitation =
+    (forecast.forecastday[0].hour[time].will_it_rain &&
+      forecast.forecastday[0].hour[time].chance_of_rain) ||
+    (forecast.forecastday[0].hour[time].will_it_snow &&
+      forecast.forecastday[0].hour[time].chance_of_snow);
 
-  const mainWeather = weather && weather.length > 0 ? weather[0] : null;
-  const weatherDescription = mainWeather ? mainWeather.description : null;
-  const precipitation = rain ? rain["1h"] : null;
-  const icon = getWeatherIcons(weatherDescription!);
+  const icon = getWeatherIcons(current.condition.text, current.is_day);
+
+  const hourlyForecasts: ExtractedHourlyForecastInfo[] =
+    extractHourlyForecastInfo(apiResponse.forecast, time);
+
+  const dailyForecasts: ExtractedDailyForecastInfo[] = extractDailyForecastInfo(
+    apiResponse.forecast
+  );
 
   const extractedInfo: ExtractedWeatherInfo = {
-    temperature: Math.round(temp),
-    humidity,
-    windSpeed: Math.round(speed),
-    precipitation,
-    weatherDescription,
+    name: location.name,
+    temperatureF: Math.round(current.temp_f),
+    temperatureC: Math.round(current.temp_c),
+    weatherDescription: current.condition.text,
+    humidity: current.humidity,
+    windSpeedMph: current.wind_mph,
+    windSpeedKmh: current.wind_kph,
+    precipitation: precipitation,
     icon: icon,
+    hourlyForecast: hourlyForecasts,
+    dailyForecast: dailyForecasts,
   };
 
   return extractedInfo;
 }
 
-function getWeatherIcons(description: string): string {
-  const period = calculateTimeOfDay();
-  if (description.includes("thunderstorm")) {
-    return "Thunderstorm";
+function getWeatherIcons(condition: string, isDay: number): string {
+  if (condition.trim().toLowerCase() == "sunny") {
+    return "Sun";
   }
 
-  if (description.includes("rain")) {
-    return "Rain";
-  }
-
-  if (description == "clear sky") {
-    if (period == "night" || period == "evening") {
+  if (condition.trim().toLowerCase() == "clear") {
+    if (isDay == 0) {
       return "Moon";
     } else {
       return "Sun";
     }
   }
 
-  if (description.includes("clouds")) {
-    if (period == "night" || period == "evening") {
+  if (condition.trim().toLowerCase() == "partly cloudy") {
+    if (isDay == 0) {
       return "Cloudy Night";
     } else {
       return "Cloudy Day";
     }
   }
 
-  if (description.includes("snow") || description.includes("sleet")) {
-    if (period == "night" || period == "evening") {
+  if (
+    condition.trim().toLowerCase() == "overcast" ||
+    condition.trim().toLowerCase() == "cloudy"
+  ) {
+    return "Cloudy";
+  }
+
+  if (
+    condition.includes("snow") ||
+    condition.includes("sleet") ||
+    condition.toLowerCase().includes("ice") ||
+    condition.trim().toLowerCase() == "blizzard"
+  ) {
+    if (isDay == 0) {
       return "Snow Night";
     } else {
       return "Snow Day";
     }
+  }
+
+  if (condition.toLowerCase().includes("thunder")) {
+    return "Thunderstorm";
+  }
+
+  if (condition.includes("rain") || condition.includes("drizzle")) {
+    return "Rain";
   }
 
   return "Mist";

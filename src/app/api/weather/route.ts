@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { extractWeatherInfo } from "../../../utilities/weatherUtils";
+import { extractWeatherInfo } from "@/utilities/weatherUtils";
 
 export async function GET(request: NextRequest) {
-  const location = request.nextUrl.searchParams;
+  const query = request.nextUrl.searchParams;
 
-  const lat = location.get("lat");
-  const lon = location.get("lon");
+  const location = query.get("location");
+  const time = Number(query.get("time"));
 
   const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${process.env.OPEN_WEATHER_API_KEY}`
+    `https://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=${location}&days=5&aqi=no&alerts=no`
   );
 
   if (!res.ok) {
@@ -18,13 +18,7 @@ export async function GET(request: NextRequest) {
 
   const data = await res.json();
 
-  if (data.cod !== 200) {
-    throw new Error(
-      `Failed to fetch data. Cod: ${data.cod}, Message: ${data.message}`
-    );
-  }
-
-  const weatherInfo = extractWeatherInfo(data);
+  const weatherInfo = extractWeatherInfo(data, time);
   
   return NextResponse.json(weatherInfo);
 }
