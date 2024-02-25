@@ -39,14 +39,14 @@ export function extractHourlyForecastInfo(forecast: Forecast, hour: number) {
       } else {
         data.push({
           temp: Math.round(
-            forecast.forecastday[1].hour[hour + index * 2].temp_f
+            forecast.forecastday[1].hour[(hour + index * 2) % 23].temp_f
           ),
           time: convertToAmPm(
-            forecast.forecastday[1].hour[hour + index * 2].time
+            forecast.forecastday[1].hour[(hour + index * 2) % 23].time
           ),
           icon: getHourlyForecastIcons(
-            forecast.forecastday[1].hour[hour + index * 2].condition.text,
-            hour + index * 2
+            forecast.forecastday[1].hour[(hour + index * 2) % 23].condition.text,
+            (hour + index * 2) % 23
           ),
         });
       }
