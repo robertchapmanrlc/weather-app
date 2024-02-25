@@ -16,7 +16,7 @@ export default function DailyForecast({ forecastData }: DailyForecastProps) {
             key={i}
             className={`w-full ${
               i > 0 && "border-transparent"
-            } border-2 px-2 md:w-32 h-36 md:h-28 flex md:flex-col items-center justify-between rounded-md`}
+            } border-2 px-5 md:w-48 h-36 md:h-28 flex md:flex-col items-center justify-between rounded-md`}
           >
             <h5 className="w-24 md:w-full text-white/60 md:text-center text-lg">
               {forecast.date}
