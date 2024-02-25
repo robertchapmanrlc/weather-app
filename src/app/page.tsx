@@ -8,12 +8,20 @@ import MobileSearchBar from "@/components/MobileSearchBar";
 import SearchBar from "@/components/SearchBar";
 import { ExtractedWeatherInfo } from "@/types/weatherTypes";
 
+import {
+  calculateTimeOfDay,
+  getTimeOfDayGradientClass,
+} from "@/utilities/timeUtils";
+
 export default function Main() {
   const [location, setLocation] = useState("Chicago, IL");
   const [weatherData, setWeatherData] = useState<
     ExtractedWeatherInfo | undefined
   >();
   const time: number = new Date().getHours();
+  const timeOfDay = calculateTimeOfDay(time);
+
+  const gradientClass = `${getTimeOfDayGradientClass(timeOfDay)} text-white`;
 
   const newLocation = (location: string) => {
     setLocation(location);
@@ -28,7 +36,9 @@ export default function Main() {
   }, [location]);
 
   return (
-    <main className="w-full flex flex-col py-[40px] px-7 md:px-14 justify-start items-center gap-y-10">
+    <main
+      className={`w-full flex flex-col py-[40px] px-7 md:px-14 justify-start items-center gap-y-10 ${gradientClass}`}
+    >
       <SearchBar newLocation={newLocation} />
       <MobileSearchBar newLocation={newLocation} />
       {weatherData ? (

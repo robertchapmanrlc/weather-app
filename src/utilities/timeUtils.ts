@@ -1,5 +1,4 @@
-export const calculateTimeOfDay = (): string => {
-  const hour = new Date().getHours();
+export const calculateTimeOfDay = (hour: number): string => {
   if (hour >= 5 && hour < 12) {
     return "morning";
   } else if (hour >= 12 && hour < 18) {
