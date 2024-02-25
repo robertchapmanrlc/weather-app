@@ -22,7 +22,6 @@ export default function Main() {
   const timeOfDay = calculateTimeOfDay(time);
 
   const gradientClass = `${getTimeOfDayGradientClass(timeOfDay)} text-white`;
-  console.log(gradientClass);
 
   const newLocation = (location: string) => {
     setLocation(location);
