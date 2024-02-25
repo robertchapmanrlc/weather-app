@@ -19,11 +19,10 @@ export default function Main() {
     ExtractedWeatherInfo | undefined
   >();
   const time: number = new Date().getHours();
-  console.log("time: ", time);
   const timeOfDay = calculateTimeOfDay(time);
-  console.log("timeOfDay: ", timeOfDay);
 
   const gradientClass = `${getTimeOfDayGradientClass(timeOfDay)} text-white`;
+  console.log(gradientClass);
 
   const newLocation = (location: string) => {
     setLocation(location);
