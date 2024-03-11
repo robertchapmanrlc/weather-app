@@ -1,8 +1,4 @@
 import "./globals.css";
-import {
-  calculateTimeOfDay,
-  getTimeOfDayGradientClass,
-} from "@/utilities/timeUtils";
 
 export const metadata = {
   title: "Weather App",
@@ -34,12 +30,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const timeOfDay = calculateTimeOfDay();
-
-  const gradientClass = `${getTimeOfDayGradientClass(timeOfDay)} text-white`;
-
   return (
-    <html lang="en" className={gradientClass}>
+    <html lang="en">
       <body className="h-full">{children}</body>
     </html>
   );
